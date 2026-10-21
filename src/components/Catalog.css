@@ -6,7 +6,12 @@
 }
 
 .catalog__text {
-  max-width: 44ch;
+  display: grid;
+  gap: var(--space-5);
+  max-width: 48ch;
+}
+
+.catalog__text > p {
   font-size: var(--text-sm);
   color: var(--text-muted);
 }

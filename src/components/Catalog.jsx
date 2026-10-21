@@ -1,12 +1,18 @@
 import { site } from '../data/site'
 import { tools } from '../data/tools'
+import { SectionHeading } from './SectionHeading'
 import './Catalog.css'
 
 export function Catalog() {
+  const { heading, body } = site.catalog
+
   return (
     <section className="catalog section" id="libraries">
       <div className="catalog__inner container">
-        <p className="catalog__text">{site.catalog.body}</p>
+        <div className="catalog__text">
+          <SectionHeading eyebrow={heading.eyebrow} title={heading.title} />
+          <p>{body}</p>
+        </div>
 
         <ul className="catalog__grid">
           {tools.map((tool) => (

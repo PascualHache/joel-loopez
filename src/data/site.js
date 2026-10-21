@@ -9,6 +9,10 @@ export const site = {
       'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1920&q=80',
   },
   about: {
+    heading: {
+      eyebrow: 'A Professional Studio At Your Service',
+      title: ['Music Production', 'for Artists'],
+    },
     image: '/assets/home/img-joelloopez-new-section.jpg',
     imageAlt: 'Joel Loopez in his studio in La Floresta, Barcelona',
     paragraphs: [
@@ -18,7 +22,17 @@ export const site = {
       'This is a space where we work calmly, with attention to detail and deep listening. If you have a song idea in mind, you’re warmly invited to visit—no pressure, no commitment.',
     ],
   },
+  music: {
+    heading: {
+      eyebrow: 'Soundtracks',
+      title: ['Original Soundtracks'],
+    },
+  },
   catalog: {
+    heading: {
+      eyebrow: 'Media',
+      title: ['Audiovisual projects'],
+    },
     body: 'Access a curated collection of original compositions, musical fragments, and soundscapes ready to be licensed or used in audiovisual projects. Each piece is categorized by style, emotion, and narrative use, making it easy for filmmakers, developers, and content creators to search and select the right track.',
   },
   funding: {

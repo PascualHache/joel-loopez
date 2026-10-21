@@ -1,0 +1,35 @@
+.section-heading__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  color: var(--accent-text);
+  font-size: var(--text-base);
+}
+
+.section-heading__rule {
+  flex-shrink: 0;
+  width: 48px;
+  height: 2px;
+  background: currentColor;
+}
+
+.section-heading__title {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--space-4);
+  /* Deliberately light: the hero keeps the bold weight, sections read quieter. */
+  font-weight: 300;
+  font-size: clamp(2rem, 3.6vw, 3.25rem);
+  letter-spacing: -0.015em;
+}
+
+@media (max-width: 560px) {
+  .section-heading__rule {
+    width: 28px;
+  }
+
+  .section-heading__eyebrow {
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+  }
+}

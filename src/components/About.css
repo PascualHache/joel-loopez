@@ -15,6 +15,11 @@
 
 .about__text {
   display: grid;
+  gap: var(--space-6);
+}
+
+.about__body {
+  display: grid;
   gap: var(--space-4);
   font-size: var(--text-sm);
   color: var(--text-muted);
