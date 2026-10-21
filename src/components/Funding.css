@@ -1,0 +1,31 @@
+.funding {
+  padding-block: var(--space-7);
+  text-align: center;
+}
+
+.funding__text {
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.funding__badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  margin: var(--space-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.funding__badge {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  color: var(--gray-1);
+  font-size: var(--text-xs);
+  font-weight: 600;
+}

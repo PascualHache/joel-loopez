@@ -1,0 +1,141 @@
+.footer {
+  border-top: 2px solid var(--brand-red);
+  background: #000;
+}
+
+.footer__main {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-5);
+  padding-block: var(--space-8);
+  text-align: center;
+}
+
+.footer__brand {
+  display: block;
+}
+
+/* --- Social ring --- */
+.footer__social {
+  display: flex;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footer__social a {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--brand-red);
+  color: #fff;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.footer__social a:hover {
+  background: var(--accent-9);
+  transform: translateY(-2px);
+}
+
+/* --- Contact row --- */
+.footer__contact {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2) var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-sm);
+}
+
+.footer__contact > li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* The contact glyphs are red; the labels stay white. */
+.footer__contact svg {
+  color: var(--brand-red);
+  flex-shrink: 0;
+}
+
+.footer__contact a {
+  transition: color var(--transition);
+}
+
+.footer__contact a:hover {
+  color: var(--accent-9);
+}
+
+/* --- Nav + language --- */
+.footer__nav,
+.footer__lang {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+}
+
+.footer__lang {
+  color: var(--text-muted);
+}
+
+.footer__nav a,
+.footer__lang a {
+  transition: color var(--transition);
+}
+
+.footer__nav a:hover,
+.footer__lang a:hover,
+.footer__lang a[aria-current] {
+  color: var(--accent-9);
+}
+
+/* --- Red legal bar --- */
+.footer__bar {
+  background: var(--brand-red);
+  color: #fff;
+  font-size: var(--text-sm);
+}
+
+.footer__bar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: 64px;
+}
+
+.footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+}
+
+.footer__legal a {
+  transition: opacity var(--transition);
+}
+
+.footer__legal a:hover {
+  opacity: 0.75;
+}
+
+@media (max-width: 680px) {
+  .footer__bar-inner {
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--space-3);
+    padding-block: var(--space-4);
+    text-align: center;
+  }
+
+  .footer__legal {
+    justify-content: center;
+  }
+}

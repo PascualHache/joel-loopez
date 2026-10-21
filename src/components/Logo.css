@@ -1,0 +1,4 @@
+.logo {
+  width: var(--logo-width, auto);
+  height: auto;
+}

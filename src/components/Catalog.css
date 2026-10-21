@@ -1,0 +1,47 @@
+.catalog__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(var(--space-5), 6vw, var(--space-9));
+  align-items: center;
+}
+
+.catalog__text {
+  max-width: 44ch;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.catalog__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.catalog__tile {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  /* White plate so the logos shipped as transparent PNGs stay legible. */
+  background: #fff;
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.catalog__tile:hover {
+  border-color: var(--accent-9);
+  transform: translateY(-2px);
+}
+
+.catalog__tile img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+@media (max-width: 760px) {
+  .catalog__inner {
+    grid-template-columns: 1fr;
+  }
+}
