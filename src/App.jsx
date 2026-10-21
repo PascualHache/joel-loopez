@@ -1,23 +1,47 @@
-import { Header } from './components/Header'
-import { Hero } from './components/Hero'
-import { About } from './components/About'
-import { Music } from './components/Music'
-import { Catalog } from './components/Catalog'
-import { Funding } from './components/Funding'
-import { Footer } from './components/Footer'
+import { useEffect, useState } from 'react'
+import { DesignSwitcher } from './components/DesignSwitcher'
+import { designs } from './data/designs'
+import { Current } from './designs/Current'
+import { Editorial } from './designs/Editorial'
+import { Paths } from './designs/Paths'
+import { Bold } from './designs/Bold'
+
+const PAGES = { current: Current, editorial: Editorial, paths: Paths, bold: Bold }
+
+const STORAGE_KEY = 'joel-loopez:design'
+
+function readStored() {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY)
+    return designs.some((d) => d.id === stored) ? stored : 'current'
+  } catch {
+    // Private windows and blocked site data both throw here.
+    return 'current'
+  }
+}
 
 export default function App() {
+  const [design, setDesign] = useState(readStored)
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_KEY, design)
+    } catch {
+      /* Remembering the choice is a convenience, never a requirement. */
+    }
+  }, [design])
+
+  function choose(next) {
+    setDesign(next)
+    window.scrollTo({ top: 0, behavior: 'auto' })
+  }
+
+  const Page = PAGES[design] ?? Current
+
   return (
     <>
-      <Header />
-      <main>
-        <Hero />
-        <About />
-        <Music />
-        <Catalog />
-        <Funding />
-      </main>
-      <Footer />
+      <Page />
+      <DesignSwitcher value={design} onChange={choose} />
     </>
   )
 }

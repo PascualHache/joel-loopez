@@ -1,0 +1,417 @@
+/* 1a Editorial — calm, type-led, generous rules instead of boxes. */
+.ed {
+  --ed-gutter: clamp(var(--space-5), 5vw, var(--space-8));
+}
+
+.ed__header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, #000 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--gray-5);
+}
+
+.ed__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  min-height: 80px;
+}
+
+.ed__nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-5);
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+.ed__lang {
+  color: var(--gray-10);
+}
+
+.ed__lang span {
+  color: #fff;
+}
+
+.ed__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-full);
+  background: var(--accent-9);
+  color: var(--accent-contrast);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  transition: background var(--transition);
+}
+
+.ed__btn:hover {
+  background: var(--accent-10);
+  color: var(--accent-contrast);
+}
+
+.ed__ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+/* --- Hero --- */
+.ed__hero {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: var(--ed-gutter);
+  align-items: end;
+  padding-block: var(--space-9) var(--space-8);
+}
+
+.ed__heroText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.ed__kicker {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  color: var(--accent-text);
+  font-size: var(--text-base);
+  font-weight: 500;
+}
+
+.ed__rule {
+  flex-shrink: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--brand-red);
+}
+
+.ed__h1 {
+  text-wrap: initial;
+  font-size: clamp(2.75rem, 6.4vw, 5.25rem);
+  font-weight: 300;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+.ed__h1 strong {
+  font-weight: 700;
+}
+
+.ed__lede {
+  max-width: 34ch;
+  font-size: var(--text-lg);
+  color: var(--text-muted);
+}
+
+.ed__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.ed__heroImg {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+/* --- Licensing strip --- */
+.ed__strip {
+  border-block: 1px solid var(--gray-5);
+}
+
+.ed__stripInner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  padding-block: var(--space-4);
+  font-size: 13px;
+  color: var(--gray-10);
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.ed__stripLead {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* --- Numbered services --- */
+.ed__split {
+  display: grid;
+  grid-template-columns: 0.6fr 1.4fr;
+  gap: var(--ed-gutter);
+  padding-block: var(--space-10);
+}
+
+.ed__label {
+  font-size: var(--text-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gray-10);
+}
+
+.ed__row {
+  display: grid;
+  grid-template-columns: 60px 1fr 1fr;
+  gap: var(--space-5);
+  align-items: baseline;
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--gray-6);
+}
+
+.ed__rows > .ed__row:last-child {
+  border-bottom: 1px solid var(--gray-6);
+}
+
+.ed__num {
+  color: var(--accent-text);
+  font-size: var(--text-sm);
+}
+
+.ed__rowTitle {
+  font-size: var(--text-2xl);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.ed__rowBody {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+/* --- Tracklist as a player --- */
+.ed__music {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
+  padding-bottom: var(--space-10);
+}
+
+.ed__musicHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.ed__h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+
+.ed__link {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--accent-text);
+}
+
+.ed__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--space-7);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ed__track {
+  display: grid;
+  grid-template-columns: 32px 44px 1fr auto;
+  gap: var(--space-4);
+  align-items: center;
+  width: 100%;
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--gray-5);
+  text-align: left;
+}
+
+.ed__trackNum,
+.ed__trackArtist,
+.ed__trackState {
+  font-size: var(--text-xs);
+  color: var(--gray-10);
+}
+
+.ed__trackNum {
+  font-size: 13px;
+}
+
+.ed__trackBtn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--gray-7);
+  border-radius: var(--radius-full);
+  color: #fff;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.ed__track[data-playing] .ed__trackBtn {
+  background: var(--brand-red);
+  border-color: var(--brand-red);
+}
+
+.ed__track:hover .ed__trackBtn {
+  border-color: var(--gray-9);
+}
+
+/* Two bars standing in for a pause glyph. */
+.ed__bars {
+  display: flex;
+  gap: 3px;
+}
+
+.ed__bars::before,
+.ed__bars::after {
+  content: '';
+  width: 3px;
+  height: 12px;
+  background: currentColor;
+}
+
+.ed__trackMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ed__trackTitle {
+  font-size: var(--text-base);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ed__track[data-playing] .ed__trackTitle {
+  color: var(--accent-text);
+}
+
+/* --- Studio --- */
+.ed__studio {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--gray-2);
+}
+
+.ed__studio img {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  object-fit: cover;
+}
+
+.ed__studioText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  justify-content: center;
+  padding: var(--space-9) var(--ed-gutter);
+}
+
+.ed__quote {
+  margin: 0;
+  font-size: var(--text-2xl);
+  font-weight: 300;
+  line-height: 1.3;
+  letter-spacing: -0.02em;
+}
+
+.ed__studioBody {
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+/* --- Contact --- */
+.ed__contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-6);
+  padding-block: var(--space-10) var(--space-9);
+}
+
+.ed__email {
+  padding-bottom: var(--space-1);
+  border-bottom: 2px solid var(--brand-red);
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  font-weight: 500;
+  color: var(--accent-text);
+  overflow-wrap: anywhere;
+}
+
+.ed__details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-8);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.ed__funding {
+  padding-block: var(--space-4);
+  border-top: 1px solid var(--gray-5);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-10);
+}
+
+.ed__legal {
+  background: var(--brand-red);
+  color: #fff;
+  font-size: var(--text-xs);
+}
+
+.ed__legalInner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-block: var(--space-4);
+}
+
+.ed__legalLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+}
+
+@media (max-width: 900px) {
+  .ed__hero,
+  .ed__split,
+  .ed__studio {
+    grid-template-columns: 1fr;
+  }
+
+  .ed__list {
+    grid-template-columns: 1fr;
+  }
+
+  .ed__row {
+    grid-template-columns: 40px 1fr;
+  }
+
+  .ed__rowBody {
+    grid-column: 2;
+  }
+}
