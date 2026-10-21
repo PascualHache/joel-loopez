@@ -31,11 +31,11 @@ export function DesignSwitcher({ value, onChange }) {
   const active = designs.find((d) => d.id === value) ?? designs[0]
 
   return (
-    <div className="switcher" data-open={open || undefined}>
+    <div className="switcher">
       {open ? (
-        <div className="switcher__bar" ref={barRef} role="group" aria-label="Page design">
+        <div className="switcher__bar" ref={barRef} role="group" aria-label="Diseño de la página">
           <span className="switcher__label" aria-hidden="true">
-            Design
+            Diseño
           </span>
 
           <div className="switcher__options">
@@ -45,7 +45,6 @@ export function DesignSwitcher({ value, onChange }) {
                 type="button"
                 className="switcher__option"
                 aria-pressed={design.id === value}
-                title={design.hint}
                 onClick={() => onChange(design.id)}
               >
                 {design.label}
@@ -53,24 +52,18 @@ export function DesignSwitcher({ value, onChange }) {
             ))}
           </div>
 
-          <p className="switcher__hint">{active.hint}</p>
-
           <button
             type="button"
             className="switcher__toggle"
-            aria-label="Hide the design switcher"
+            aria-label="Ocultar el selector de diseño"
             onClick={() => setOpen(false)}
           >
             ✕
           </button>
         </div>
       ) : (
-        <button
-          type="button"
-          className="switcher__reopen"
-          onClick={() => setOpen(true)}
-        >
-          Design · {active.label}
+        <button type="button" className="switcher__reopen" onClick={() => setOpen(true)}>
+          Diseño · {active.label}
         </button>
       )}
     </div>

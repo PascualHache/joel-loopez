@@ -132,14 +132,49 @@
 }
 
 .ed__stripInner {
-  display: flex;
-  align-items: center;
-  gap: var(--space-6);
   padding-block: var(--space-4);
   font-size: 13px;
   color: var(--gray-10);
   white-space: nowrap;
-  overflow-x: auto;
+  /* No scrollbar: the strip scrolls itself. */
+  overflow: hidden;
+}
+
+.ed__marquee {
+  display: flex;
+  width: max-content;
+  animation: ed-marquee 45s linear infinite;
+}
+
+.ed__marquee:hover {
+  animation-play-state: paused;
+}
+
+.ed__marqueeGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  padding-right: var(--space-6);
+}
+
+@keyframes ed-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/*
+ * The global reduced-motion rule only shortens animations, which would snap the
+ * track to its end position. Drop the animation and hand scrolling back instead.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .ed__marquee {
+    animation: none;
+  }
+
+  .ed__stripInner {
+    overflow-x: auto;
+  }
 }
 
 .ed__stripLead {

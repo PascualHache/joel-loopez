@@ -1,9 +1,16 @@
-/** The design directions the floating switcher offers. */
+/**
+ * The design directions the floating switcher offers.
+ *
+ * - current:   the shipped site
+ * - editorial: calm, type-led, the tracklist as a real player
+ * - paths:     routes each visitor type to its own path
+ * - bold:      red leads, giant type, music up front
+ */
 export const designs = [
-  { id: 'current', label: 'Current', hint: 'The shipped site' },
-  { id: 'editorial', label: '1a Editorial', hint: 'Calm, type-led, tracklist as a real player' },
-  { id: 'paths', label: '1b Paths', hint: 'Routes each visitor type to its path' },
-  { id: 'bold', label: '1c Bold', hint: 'Red leads, giant type, music up front' },
+  { id: 'current', label: 'Actual' },
+  { id: 'editorial', label: '1a Editorial' },
+  { id: 'paths', label: '1b Rutas' },
+  { id: 'bold', label: '1c Audaz' },
 ]
 
 /** Numbered service rows — 1a lists them, 1c turns them into cards. */

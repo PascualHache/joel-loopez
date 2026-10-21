@@ -61,10 +61,18 @@ export function Editorial() {
 
       <div className="ed__strip">
         <div className="ed__stripInner container">
-          <span className="ed__stripLead">300+ tracks licensed on</span>
-          {tools.map((tool) => (
-            <span key={tool.id}>{tool.name}</span>
-          ))}
+          <div className="ed__marquee">
+            {/* Two identical groups: the track slides exactly one group, so the
+                loop is seamless. The copy is hidden from assistive tech. */}
+            {[0, 1].map((copy) => (
+              <div className="ed__marqueeGroup" key={copy} aria-hidden={copy === 1 || undefined}>
+                <span className="ed__stripLead">300+ tracks licensed on</span>
+                {tools.map((tool) => (
+                  <span key={tool.id}>{tool.name}</span>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
