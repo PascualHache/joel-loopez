@@ -92,8 +92,7 @@
 }
 
 .footer__nav a:hover,
-.footer__lang a:hover,
-.footer__lang a[aria-current] {
+.footer__lang a:hover {
   color: var(--accent-9);
 }
 

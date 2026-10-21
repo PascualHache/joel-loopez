@@ -16,7 +16,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-5);
-  min-height: 56px;
+  min-height: 64px;
 }
 
 .topbar__contact,
@@ -36,7 +36,7 @@
 .topbar__contact > li + li::before {
   content: '';
   width: 1px;
-  align-self: stretch;
+  height: 18px;
   margin-right: var(--space-5);
   background: var(--white-a6);
 }
@@ -62,8 +62,8 @@
 .topbar__social a {
   display: grid;
   place-items: center;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--radius-full);
   background: #fff;
   color: var(--brand-red-ink);
@@ -103,8 +103,7 @@
   transition: color var(--transition);
 }
 
-.navbar__nav a:hover,
-.navbar__nav a[aria-current] {
+.navbar__nav a:hover {
   color: var(--accent-9);
 }
 

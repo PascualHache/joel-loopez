@@ -30,9 +30,12 @@
   --accent-1: var(--red-1);
   --accent-3: var(--red-3);
   --accent-6: var(--red-6);
-  --accent-9: var(--red-9);
-  --accent-10: var(--red-10);
+  /* Solid brand elements use the logo red; the Radix steps drive hovers. */
+  --accent-9: var(--brand-red);
+  --accent-10: var(--red-9);
   --accent-11: var(--red-11);
+  /* Red text on black: the brand red is only ~2.1:1 here, red-9 is ~4.8:1. */
+  --accent-text: var(--red-9);
   --accent-contrast: #fff;
 
   /* --- Typography --- */

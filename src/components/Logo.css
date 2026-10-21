@@ -1,4 +1,9 @@
+/*
+ * No `width` here on purpose: the width/height attributes on the <img> carry
+ * the intended size (and reserve the box, so the logo does not shift on load).
+ * A CSS `width` would override them -- the global `img { max-width: 100% }`
+ * is what keeps it inside narrow containers.
+ */
 .logo {
-  width: var(--logo-width, auto);
   height: auto;
 }
