@@ -34,8 +34,12 @@
   --accent-9: var(--brand-red);
   --accent-10: var(--red-9);
   --accent-11: var(--red-11);
-  /* Red text on black: the brand red is only ~2.1:1 here, red-9 is ~4.8:1. */
-  --accent-text: var(--red-9);
+  /*
+   * Red text on black. The brand red reads far better here than Radix red-9
+   * (#e5484d), which skews coral, but at 2.6:1 it is unusable for small text.
+   * This is the deepest red that still clears WCAG AA at 4.5:1.
+   */
+  --accent-text: #dc2f3a;
   --accent-contrast: #fff;
 
   /* --- Typography --- */
