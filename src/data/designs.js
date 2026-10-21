@@ -8,9 +8,9 @@
  */
 export const designs = [
   { id: 'current', label: 'Actual' },
-  { id: 'editorial', label: '1a Editorial' },
-  { id: 'paths', label: '1b Rutas' },
-  { id: 'bold', label: '1c Audaz' },
+  { id: 'editorial', label: '1a Yeya Shimbolina' },
+  { id: 'paths', label: '1b Chucho Samozas' },
+  { id: 'bold', label: '1c Wido Mayamé' },
 ]
 
 /** Numbered service rows — 1a lists them, 1c turns them into cards. */

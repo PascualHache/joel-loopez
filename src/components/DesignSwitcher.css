@@ -32,10 +32,19 @@
 
 .switcher__options {
   display: flex;
+  flex: 0 1 auto;
+  min-width: 0;
   gap: var(--space-1);
   padding: 3px;
   border-radius: var(--radius-full);
   background: var(--gray-a3);
+  overflow-x: auto;
+  /* A visible scrollbar inside the pill would read as a glitch. */
+  scrollbar-width: none;
+}
+
+.switcher__options::-webkit-scrollbar {
+  display: none;
 }
 
 .switcher__option {
@@ -108,11 +117,6 @@
 
   .switcher__label {
     display: none;
-  }
-
-  .switcher__options {
-    flex: 1;
-    overflow-x: auto;
   }
 
   .switcher__option {
