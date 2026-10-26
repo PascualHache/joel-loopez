@@ -1,0 +1,123 @@
+/* 3a Paper & Moss — paper, linen, sage, moss, forest ink. */
+.pm {
+  --t3-bg: #f3efe6;
+  --t3-surface: #e4e0d2;
+  --t3-ink: #1f2a22;
+  --t3-muted: #4b5a4e;
+  --t3-soft: #6b7a5e;
+  --t3-line: #d6d1c4;
+  --t3-accent: #8a9a74;
+  --t3-accent-ink: #1f2a22;
+
+  --t3-display: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --t3-display-weight: 300;
+  --t3-body: 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+  --t3-service-style: italic;
+
+  --t3-btn-bg: #1f2a22;
+  --t3-btn-ink: #f3efe6;
+  --t3-img-radius: 6px;
+}
+
+/* The page sits above the dark shell, so the document ground changes with it. */
+:root[data-design='paper'] body {
+  background: #f3efe6;
+}
+
+.pm__hero {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 3rem;
+  align-items: end;
+  padding-block: clamp(3rem, 7vw, 4.5rem) clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.pm__heroText {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  align-items: flex-start;
+}
+
+.pm__eyebrow {
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--t3-soft);
+}
+
+.pm__h1 {
+  font-size: clamp(2.5rem, 6vw, 4.25rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.pm__h1 i {
+  font-style: italic;
+}
+
+.pm__lede {
+  max-width: 34ch;
+  color: var(--t3-muted);
+}
+
+.pm__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.pm__aside {
+  font-size: 14px;
+  color: var(--t3-muted);
+}
+
+/* The arch is the identity's one organic gesture; it repeats nowhere else. */
+.pm__arch {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: 58% center;
+  border-radius: 200px 200px 6px 6px;
+}
+
+.pm__strip {
+  background: var(--t3-surface);
+}
+
+.pm__stripInner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding-block: 2.5rem;
+}
+
+.pm__stripInner > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pm__stripTitle {
+  font-size: 1.375rem;
+  font-style: italic;
+}
+
+.pm__stripBody {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--t3-muted);
+}
+
+@media (max-width: 900px) {
+  .pm__hero,
+  .pm__stripInner {
+    grid-template-columns: 1fr;
+  }
+
+  .pm__arch {
+    aspect-ratio: 4 / 3;
+    border-radius: 160px 160px 6px 6px;
+  }
+}

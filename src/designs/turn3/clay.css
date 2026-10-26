@@ -1,0 +1,97 @@
+/* 3c Clay & Breath — sand, clay, terracotta, bark, earth. */
+.cb {
+  --t3-bg: #ecdfd0;
+  --t3-surface: #dcc5ae;
+  --t3-ink: #3a2a22;
+  --t3-muted: #6e5646;
+  --t3-soft: #6e5646;
+  --t3-line: #d3b89f;
+  --t3-accent: #b86f4c;
+  --t3-accent-ink: #fff7ef;
+
+  --t3-display: 'Spectral', Georgia, serif;
+  --t3-display-weight: 300;
+  --t3-body: 'Work Sans', system-ui, -apple-system, sans-serif;
+
+  --t3-btn-bg: #3a2a22;
+  --t3-btn-ink: #ecdfd0;
+  /* Terracotta sits close to the logo red, so the header never uses it. */
+  --t3-nav-cta: #3a2a22;
+  --t3-img-radius: 6px;
+}
+
+:root[data-design='clay'] body {
+  background: #ecdfd0;
+}
+
+.cb__hero {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 3rem;
+  align-items: center;
+  padding-block: clamp(2.5rem, 6vw, 3.5rem) clamp(3rem, 7vw, 4rem);
+}
+
+/* The circle is the identity's rhyme with the logo's rings. */
+.cb__round {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: 58% center;
+  border-radius: 50%;
+}
+
+.cb__heroText {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cb__h1 {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.cb__h1 i {
+  font-style: italic;
+}
+
+.cb__lede {
+  max-width: 42ch;
+  line-height: 1.7;
+  color: var(--t3-muted);
+}
+
+.cb__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13px;
+}
+
+.cb__tags li {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--t3-surface);
+}
+
+.cb__tags li[data-accent] {
+  background: var(--t3-accent);
+  color: var(--t3-accent-ink);
+}
+
+@media (max-width: 900px) {
+  .cb__hero {
+    grid-template-columns: 1fr;
+  }
+
+  .cb__round {
+    max-width: 320px;
+  }
+}

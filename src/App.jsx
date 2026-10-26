@@ -5,8 +5,19 @@ import { Current } from './designs/Current'
 import { Editorial } from './designs/Editorial'
 import { Paths } from './designs/Paths'
 import { Bold } from './designs/Bold'
+import { PaperMoss } from './designs/turn3/PaperMoss'
+import { NightForest } from './designs/turn3/NightForest'
+import { ClayBreath } from './designs/turn3/ClayBreath'
 
-const PAGES = { current: Current, editorial: Editorial, paths: Paths, bold: Bold }
+const PAGES = {
+  current: Current,
+  editorial: Editorial,
+  paths: Paths,
+  bold: Bold,
+  paper: PaperMoss,
+  night: NightForest,
+  clay: ClayBreath,
+}
 
 const STORAGE_KEY = 'joel-loopez:design'
 

@@ -20,3 +20,16 @@
   border: 1px dashed var(--white-a8);
   color: #fff;
 }
+
+/* Light identities: ink-on-paper dashes instead of grey-on-black. */
+.ph[data-tone='paper'] {
+  background: color-mix(in srgb, currentColor 4%, transparent);
+  border: 1px dashed var(--t3-line, #d6d1c4);
+  color: var(--t3-muted, #4b5a4e);
+}
+
+.ph[data-tone='night'] {
+  background: var(--t3-surface, #1e2620);
+  border: 1px dashed var(--t3-line, #3a4538);
+  color: var(--t3-soft, #a9ab9c);
+}

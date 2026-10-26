@@ -14,7 +14,45 @@ export const designs = [
   { id: 'editorial', label: '1a Yeya Shimbolina' },
   { id: 'paths', label: '1b Chucho Samozas' },
   { id: 'bold', label: '1c Wido Mayamé' },
+  { id: 'paper', label: '3a Paper & Moss' },
+  { id: 'night', label: '3b Night Forest' },
+  { id: 'clay', label: '3c Clay & Breath' },
 ]
+
+/**
+ * Turn 3 — three visual identities that drop the black-and-red brand and keep
+ * red only inside the logo. Shared Gestalt framing: figure and ground (room to
+ * breathe, one thing in focus), here and now (unhurried, no aggressive CTAs),
+ * and contact (first person, inviting).
+ */
+export const turn3 = {
+  nav: ['Work', 'Services', 'Ecstatic Dance', 'Studio'],
+  navCta: 'Get in touch',
+  cta: 'Start a conversation',
+  paper: {
+    eyebrow: 'Composer & producer · La Floresta, Barcelona',
+    title: ['Music that begins ', 'with listening.'],
+    body: 'Original music for brands, games and film — made with presence, attention and care.',
+    aside: 'Listen first ↓',
+    strip: [
+      { title: 'Custom music', body: 'Scores for ads, games, film and events.' },
+      { title: 'Production', body: 'Your song, in the studio or remotely.' },
+      { title: 'Ecstatic Dance', body: 'DJ journeys for free, conscious movement.' },
+    ],
+  },
+  night: {
+    eyebrow: 'Composer · Producer · DJ',
+    title: ['Sound for what ', 'moves', ' you.'],
+    body: 'Original music for brands, games and film, and ecstatic dance journeys — from a studio in the woods of La Floresta.',
+    placeholder: 'Photo — forest / dance at dusk',
+  },
+  clay: {
+    title: ['Here, now,', 'and in tune.'],
+    body: 'I compose original music for brands, games and film, accompany artists, and hold space for ecstatic dance. Always starting from contact: listening to you first.',
+    tags: ['Custom music', 'Production', 'Mentorship', 'Licensing'],
+    accentTag: 'Ecstatic Dance',
+  },
+}
 
 export const positioning = {
   eyebrow: 'Composer & Producer · Barcelona',
