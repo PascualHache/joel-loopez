@@ -75,11 +75,39 @@
   margin-top: var(--space-7);
 }
 
+.bo__topText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin-bottom: var(--space-8);
+}
+
 .bo__lede {
   max-width: 40ch;
-  margin-bottom: var(--space-8);
   font-size: var(--text-lg);
   line-height: 1.55;
+}
+
+.bo__clients {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-6);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.bo__clientsLabel {
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.bo__topPh {
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  border-bottom: none;
 }
 
 .bo__topImg {
@@ -228,25 +256,55 @@
 /* --- Service cards --- */
 .bo__cards {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-4);
   padding-bottom: var(--space-9);
+}
+
+.bo__lead {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-7);
+  align-items: end;
+  padding: var(--space-8);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  color: var(--gray-1);
+}
+
+.bo__leadText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.bo__leadKicker {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--brand-red);
+}
+
+.bo__leadTitle {
+  font-size: clamp(2rem, 4.4vw, 3.5rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1;
+}
+
+.bo__leadBody {
+  font-size: 15px;
+  line-height: 1.6;
 }
 
 .bo__card {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
-  min-height: 220px;
-  padding: var(--space-7);
+  gap: var(--space-3);
+  min-height: 200px;
+  padding: var(--space-6);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-}
-
-.bo__card[data-feature] {
-  background: #fff;
-  color: var(--gray-1);
-  border-color: #fff;
 }
 
 .bo__cardKicker {
@@ -255,22 +313,11 @@
   color: var(--accent-text);
 }
 
-.bo__card[data-feature] .bo__cardKicker {
-  color: var(--brand-red);
-}
-
 .bo__cardTitle {
-  font-size: clamp(1.5rem, 2.4vw, 2.25rem);
+  font-size: clamp(1.5rem, 2.2vw, 1.875rem);
   font-weight: 300;
   letter-spacing: -0.02em;
   line-height: 1.15;
-}
-
-.bo__card[data-feature] .bo__cardTitle {
-  font-size: clamp(3rem, 5vw, 4.5rem);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1;
 }
 
 .bo__cardBody {
@@ -280,8 +327,76 @@
   color: var(--text-muted);
 }
 
-.bo__card[data-feature] .bo__cardBody {
-  color: var(--gray-1);
+/* --- Ecstatic Dance --- */
+.bo__dance {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  background: var(--brand-red);
+  color: #fff;
+}
+
+.bo__danceText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  justify-content: center;
+  padding: var(--space-9) clamp(var(--space-5), 5vw, var(--space-8));
+}
+
+.bo__danceKicker {
+  font-size: var(--text-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.bo__danceBody {
+  max-width: 44ch;
+  font-size: var(--text-lg);
+  line-height: 1.6;
+}
+
+/* --- Testimonials --- */
+.bo__quotes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(var(--space-5), 4vw, var(--space-7));
+  padding-block: var(--space-9);
+}
+
+.bo__quoteCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin: 0;
+}
+
+.bo__quoteMark {
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 0.6;
+  color: var(--brand-red);
+}
+
+.bo__quoteText {
+  font-size: 19px;
+  line-height: 1.55;
+}
+
+.bo__quoteWho {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: auto;
+}
+
+.bo__quoteName {
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.bo__quoteRole {
+  font-size: 13px;
+  color: var(--accent-text);
 }
 
 /* --- Studio split --- */
@@ -406,20 +521,27 @@
 }
 
 @media (max-width: 1000px) {
-  .bo__tiles {
+  .bo__tiles,
+  .bo__cards {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bo__quotes {
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 860px) {
   .bo__topGrid,
   .bo__cards,
+  .bo__lead,
   .bo__studio,
+  .bo__dance,
   .bo__contactGrid {
     grid-template-columns: 1fr;
   }
 
-  .bo__lede {
+  .bo__topText {
     margin-bottom: 0;
   }
 }

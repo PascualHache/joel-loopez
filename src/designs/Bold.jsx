@@ -1,15 +1,25 @@
-import { consoleImage, services, studioImage } from '../data/designs'
+import {
+  about,
+  clients,
+  ecstaticDance,
+  featuredWork,
+  quotes,
+  services,
+  studioImage,
+} from '../data/designs'
 import { contact, social } from '../data/site'
 import { tracks } from '../data/tracks'
 import { useTrackPlayer } from '../hooks/useTrackPlayer'
 import { Logo } from '../components/Logo'
 import { PlayIcon } from '../components/Icons'
+import { Placeholder } from '../components/Placeholder'
 import './Bold.css'
 
-const NAV = ['Music', 'Services', 'Studio', 'Licensing']
+const NAV = ['Work', 'Services', 'Ecstatic Dance', 'Licensing']
 
 export function Bold() {
   const { items } = useTrackPlayer(tracks)
+  const [lead, ...rest] = services.slice(0, 4)
 
   return (
     <div className="bo">
@@ -19,34 +29,48 @@ export function Bold() {
             <Logo width={120} />
             <nav className="bo__nav" aria-label="Primary">
               {NAV.map((label) => (
-                <a key={label} href={`#${label.toLowerCase()}`}>
+                <a key={label} href={`#${label.toLowerCase().replace(/ /g, '-')}`}>
                   {label}
                 </a>
               ))}
               <span className="bo__lang">ES / EN</span>
               <a className="bo__btnLight" href="#contact">
-                Get in touch
+                Start a project
               </a>
             </nav>
           </header>
 
           <h1 className="bo__h1">
-            Original
+            Music for
             <br />
-            Music &amp; Audio
+            brands, games
+            <br />
+            &amp; film.
           </h1>
 
           <div className="bo__topGrid">
-            <p className="bo__lede">
-              Custom music for film, games and ads. Production for artists. Mentorship for
-              composers. Composed in Barcelona.
-            </p>
-            <img className="bo__topImg" src={consoleImage} alt="Studio console" />
+            <div className="bo__topText">
+              <p className="bo__lede">
+                Original soundtracks in any genre you need. Composed in Barcelona.
+              </p>
+              <div className="bo__clients">
+                <span className="bo__clientsLabel">Music for</span>
+                {clients.map((client) => (
+                  <span key={client}>{client}</span>
+                ))}
+              </div>
+            </div>
+            <Placeholder
+              label={featuredWork.placeholder}
+              tone="light"
+              minHeight={320}
+              className="bo__topPh"
+            />
           </div>
         </div>
       </div>
 
-      <section className="bo__music container" id="music">
+      <section className="bo__music container" id="work">
         <div className="bo__musicHead">
           <h2 className="bo__h2">Press play.</h2>
           <a
@@ -76,7 +100,7 @@ export function Bold() {
               </span>
               <span className="bo__tileMeta">
                 <span className="bo__tileTitle">{track.title}</span>
-                <span className="bo__tileArtist">{track.artist}</span>
+                <span className="bo__tileArtist">{track.project}</span>
               </span>
             </button>
           ))}
@@ -84,8 +108,19 @@ export function Bold() {
       </section>
 
       <section className="bo__cards container" id="services">
-        {services.map((service, i) => (
-          <article className="bo__card" key={service.num} data-feature={i === 3 || undefined}>
+        <article className="bo__lead">
+          <div className="bo__leadText">
+            <span className="bo__leadKicker">{lead.kicker}</span>
+            <span className="bo__leadTitle">{lead.cardTitle}</span>
+            <span className="bo__leadBody">{lead.cardBody}</span>
+          </div>
+          <a className="bo__btn" href="#contact">
+            Start a project
+          </a>
+        </article>
+
+        {rest.map((service) => (
+          <article className="bo__card" key={service.num}>
             <span className="bo__cardKicker">{service.kicker}</span>
             <span className="bo__cardTitle">{service.cardTitle}</span>
             <span className="bo__cardBody">{service.cardBody}</span>
@@ -93,21 +128,54 @@ export function Bold() {
         ))}
       </section>
 
-      <section className="bo__studio" id="studio">
+      <section className="bo__dance" id="ecstatic-dance">
+        <div className="bo__danceText">
+          <span className="bo__danceKicker">05 · Ecstatic Dance DJ</span>
+          <h2 className="bo__h4">
+            Dance
+            <br />
+            freely.
+          </h2>
+          <p className="bo__danceBody">
+            Live DJ journeys for conscious movement — grounding, peak, stillness. For gatherings,
+            retreats and festivals.
+          </p>
+          <div>
+            <a className="bo__btnLight" href="#contact">
+              {ecstaticDance.cta}
+            </a>
+          </div>
+        </div>
+        <Placeholder label={ecstaticDance.placeholder} tone="light" minHeight={460} />
+      </section>
+
+      <section className="bo__quotes container">
+        {quotes.map((quote) => (
+          <blockquote className="bo__quoteCard" key={quote.name}>
+            <span className="bo__quoteMark" aria-hidden="true">
+              “
+            </span>
+            <p className="bo__quoteText">{quote.text}</p>
+            <footer className="bo__quoteWho">
+              <span className="bo__quoteName">{quote.name}</span>
+              <span className="bo__quoteRole">{quote.role}</span>
+            </footer>
+          </blockquote>
+        ))}
+      </section>
+
+      <section className="bo__studio" id="about">
         <div className="bo__studioText">
           <p className="bo__eyebrow">
             <span className="bo__rule" aria-hidden="true" />
-            A Professional Studio At Your Service
+            About Joel
           </p>
           <h2 className="bo__h3">
-            Surrounded by nature.
+            Composer, producer,
             <br />
-            Built for deep listening.
+            DJ. Barcelona.
           </h2>
-          <p className="bo__studioBody">
-            What matters most to me is the human connection. If you have a song idea in mind,
-            you’re warmly invited to visit — no pressure, no commitment.
-          </p>
+          <p className="bo__studioBody">{about.bold}</p>
         </div>
         <img src={studioImage} alt="Joel Loopez in his studio" loading="lazy" />
       </section>
@@ -123,7 +191,7 @@ export function Bold() {
             <div className="bo__contactDetails">
               <a href={`mailto:${contact.email}`}>{contact.email}</a>
               <span>{contact.phone}</span>
-              <span className="bo__muted">Barcelona, España</span>
+              <span className="bo__muted">{contact.location}</span>
             </div>
           </div>
 

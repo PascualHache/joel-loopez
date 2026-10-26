@@ -90,7 +90,7 @@
 /* 1px gaps over a lighter ground give the grid its hairlines. */
 .pa__paths {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1.6fr repeat(4, 1fr);
   gap: 1px;
   background: var(--gray-6);
   border: 1px solid var(--gray-6);
@@ -107,7 +107,17 @@
 }
 
 .pa__path[data-lead] {
+  background: var(--brand-red);
   border-top-color: var(--brand-red);
+}
+
+.pa__path[data-lead] .pa__pathTitle {
+  font-size: var(--text-xl);
+  font-weight: 600;
+}
+
+.pa__path[data-lead]:hover {
+  background: var(--accent-10);
 }
 
 .pa__path:hover {
@@ -124,13 +134,13 @@
 }
 
 .pa__path[data-lead] .pa__pathKicker {
-  color: var(--accent-text);
+  color: #fff;
 }
 
 .pa__pathTitle {
-  font-size: var(--text-xl);
+  font-size: var(--text-lg);
   font-weight: 300;
-  line-height: 1.3;
+  line-height: 1.35;
 }
 
 /* --- Shared type --- */
@@ -193,158 +203,134 @@
   color: var(--accent-text);
 }
 
-/* --- Featured player + list --- */
-.pa__music {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--pa-gutter);
+/* --- Selected work --- */
+.pa__work {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-7);
   padding-block: var(--space-10);
 }
 
-.pa__musicLeft {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
-}
-
-.pa__player {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
-  margin-top: var(--space-4);
-  padding: var(--space-5);
-  border-radius: var(--radius-lg);
-  background: var(--gray-2);
-}
-
-.pa__playerRow {
-  display: flex;
-  align-items: center;
-  gap: var(--space-5);
-}
-
-.pa__playerBtn {
+.pa__featured {
   display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  width: 64px;
-  height: 64px;
-  border-radius: var(--radius-full);
-  background: var(--brand-red);
-  color: #fff;
-  transition: transform var(--transition);
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: var(--pa-gutter);
+  align-items: end;
 }
 
-.pa__playerBtn:hover {
-  transform: scale(1.05);
-}
-
-.pa__bars {
-  display: flex;
-  gap: 4px;
-}
-
-.pa__bars::before,
-.pa__bars::after {
-  content: '';
-  width: 4px;
-  height: 18px;
-  background: currentColor;
-}
-
-.pa__playerMeta {
+.pa__featuredText {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
-  min-width: 0;
+  gap: var(--space-4);
 }
 
-.pa__playerState {
-  font-size: var(--text-xs);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--text-subtle);
-}
-
-.pa__playerTitle {
-  font-size: var(--text-xl);
-  font-weight: 600;
-}
-
-.pa__playerArtist {
-  font-size: 13px;
-  color: var(--text-muted);
-}
-
-.pa__progress {
-  height: 4px;
-  border-radius: var(--radius-full);
-  background: var(--gray-5);
-  overflow: hidden;
-}
-
-.pa__progress div {
-  height: 100%;
-  background: var(--brand-red);
-  transition: width var(--transition);
-}
-
-.pa__musicRight {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
-}
-
-.pa__list {
-  width: 100%;
+.pa__tracks {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.pa__track {
+.pa__trackCard {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: var(--space-4);
   width: 100%;
-  padding-block: var(--space-4);
-  border-bottom: 1px solid var(--gray-5);
+  padding: var(--space-5);
+  border: 1px solid var(--gray-5);
+  border-radius: var(--radius-lg);
+  background: var(--gray-2);
   text-align: left;
+  transition: border-color var(--transition);
 }
 
-.pa__trackLeft {
+.pa__trackCard[data-playing] {
+  border-color: var(--brand-red);
+}
+
+.pa__trackBtn {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--brand-red);
+  color: #fff;
+}
+
+.pa__bars {
   display: flex;
-  align-items: center;
-  gap: var(--space-4);
+  gap: 3px;
+}
+
+.pa__bars::before,
+.pa__bars::after {
+  content: '';
+  width: 3px;
+  height: 12px;
+  background: currentColor;
+}
+
+.pa__trackMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
   min-width: 0;
 }
 
-.pa__trackNum {
-  width: 24px;
-  flex-shrink: 0;
-  font-size: 13px;
-  color: var(--gray-10);
-}
-
 .pa__trackTitle {
-  font-size: var(--text-base);
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.pa__trackAction {
-  flex-shrink: 0;
+.pa__trackProject {
   font-size: var(--text-xs);
-  font-weight: 600;
-  color: var(--text-subtle);
+  color: var(--gray-10);
 }
 
-.pa__track:hover .pa__trackTitle,
-.pa__track:hover .pa__trackAction {
+/* --- Testimonials --- */
+.pa__quotes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  padding-bottom: var(--space-10);
+}
+
+.pa__quoteCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin: 0;
+  padding: var(--space-6);
+  border-radius: var(--radius-sm);
+  background: var(--gray-2);
+}
+
+.pa__quoteText {
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.pa__quoteWho {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: auto;
+}
+
+.pa__quoteName {
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.pa__quoteRole {
+  font-size: 13px;
   color: var(--accent-text);
 }
 
@@ -371,27 +357,34 @@
   gap: var(--space-5);
 }
 
-.pa__features {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.pa__studioActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   gap: var(--space-4);
-  margin: 0;
-  padding-block: var(--space-5);
-  border-block: 1px solid var(--gray-6);
-  list-style: none;
-  font-size: var(--text-sm);
 }
 
-/* --- Mentorship banner --- */
-.pa__mentorship {
+/* --- Ecstatic Dance --- */
+.pa__dance {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: var(--space-7);
-  align-items: center;
+  grid-template-columns: 1fr 1fr;
   margin-bottom: var(--space-10);
-  padding: var(--space-8);
+  border-top: 3px solid var(--brand-red);
   border-radius: var(--radius-sm);
   background: var(--gray-2);
+  overflow: hidden;
+}
+
+.pa__danceText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-8);
+}
+
+.pa__dancePh {
+  border-radius: 0;
+  border-width: 0 0 0 1px;
 }
 
 .pa__kicker {
@@ -401,32 +394,57 @@
   color: var(--accent-text);
 }
 
-.pa__mentorTitle {
-  margin-top: var(--space-3);
-  font-size: var(--text-2xl);
-  font-weight: 300;
-  letter-spacing: -0.02em;
+.pa__kickerMuted {
+  font-size: var(--text-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gray-10);
 }
 
-/* --- Licensing grid --- */
+/* --- Licensing --- */
 .pa__licensing {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-7);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--pa-gutter);
   padding-bottom: var(--space-10);
 }
 
-.pa__licensingHead {
+.pa__licensingText {
   display: flex;
-  flex-wrap: wrap;
-  align-items: end;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.pa__packs {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pa__packs li {
+  display: flex;
   justify-content: space-between;
-  gap: var(--space-7);
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+  border-bottom: 1px solid var(--gray-5);
+  font-size: 15px;
+}
+
+.pa__packName {
+  font-weight: 500;
+}
+
+.pa__packWhere {
+  font-size: 13px;
+  color: var(--gray-10);
 }
 
 .pa__platforms {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  align-self: end;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -435,10 +453,10 @@
 }
 
 .pa__platforms li {
-  padding: var(--space-6) var(--space-4);
+  padding: var(--space-5) var(--space-4);
   border-right: 1px solid var(--gray-6);
   border-bottom: 1px solid var(--gray-6);
-  font-size: 15px;
+  font-size: var(--text-sm);
   font-weight: 500;
 }
 
@@ -448,26 +466,34 @@
 }
 
 .pa__footerInner {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: var(--pa-gutter);
   align-items: end;
-  justify-content: space-between;
-  gap: var(--space-7);
-  padding-block: var(--space-9);
+  padding-block: var(--space-9) var(--space-8);
 }
 
-.pa__footerBrand {
+.pa__footerAbout {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
+  align-items: flex-start;
+}
+
+.pa__aboutText {
+  font-size: var(--text-xl);
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
 }
 
 .pa__footerDetails {
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3) var(--space-6);
+  flex-direction: column;
+  gap: var(--space-4);
   font-size: var(--text-sm);
   color: var(--text-muted);
+  overflow-wrap: anywhere;
 }
 
 .pa__social {
@@ -515,26 +541,31 @@
   gap: var(--space-5);
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   .pa__paths {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .pa__platforms {
-    grid-template-columns: repeat(3, 1fr);
+  .pa__tracks {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pa__quotes {
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 860px) {
-  .pa__music,
+  .pa__featured,
   .pa__studio,
-  .pa__mentorship {
+  .pa__dance,
+  .pa__licensing,
+  .pa__footerInner {
     grid-template-columns: 1fr;
   }
 
-  .pa__features {
-    grid-template-columns: 1fr;
-    gap: var(--space-2);
+  .pa__dancePh {
+    border-width: 1px 0 0;
   }
 }
 
@@ -543,7 +574,8 @@
     grid-template-columns: 1fr;
   }
 
-  .pa__platforms {
+  .pa__platforms,
+  .pa__tracks {
     grid-template-columns: repeat(2, 1fr);
   }
 }

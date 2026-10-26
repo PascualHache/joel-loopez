@@ -1,4 +1,13 @@
-import { consoleImage, paths, studioImage } from '../data/designs'
+import {
+  about,
+  consoleImage,
+  ecstaticDance,
+  featuredWork,
+  packs,
+  paths,
+  quotes,
+  studioImage,
+} from '../data/designs'
 import { contact, social } from '../data/site'
 import { tools } from '../data/tools'
 import { tracks } from '../data/tracks'
@@ -12,9 +21,10 @@ import {
   SpotifyIcon,
   YoutubeIcon,
 } from '../components/Icons'
+import { Placeholder } from '../components/Placeholder'
 import './Paths.css'
 
-const NAV = ['Music', 'Studio', 'Licensing', 'Contact']
+const NAV = ['Work', 'Ecstatic Dance', 'Studio', 'Licensing', 'Contact']
 
 const socialIcons = {
   instagram: InstagramIcon,
@@ -24,16 +34,9 @@ const socialIcons = {
   blog: PencilIcon,
 }
 
-const STUDIO_FEATURES = [
-  'Professional mics & gear',
-  'Acoustic & electronic instruments',
-  'Plugins & virtual instruments',
-]
-
 export function Paths() {
-  const { items, playing } = useTrackPlayer(tracks)
-  const featured = playing ?? items[0]
-  const rest = items.filter((t) => t.id !== featured.id)
+  const { items } = useTrackPlayer(tracks)
+  const top = items.slice(0, 4)
 
   return (
     <div className="pa">
@@ -44,7 +47,7 @@ export function Paths() {
           <Logo width={120} />
           <nav className="pa__nav" aria-label="Primary">
             {NAV.map((label) => (
-              <a key={label} href={`#${label.toLowerCase()}`}>
+              <a key={label} href={`#${label.toLowerCase().replace(/ /g, '-')}`}>
                 {label}
               </a>
             ))}
@@ -57,18 +60,19 @@ export function Paths() {
         <div className="pa__topBody container">
           <div className="pa__intro">
             <h1 className="pa__h1">
-              Original Music &amp;
+              Original music for
               <br />
-              Audio Services
+              brands, games &amp; film
             </h1>
             <p className="pa__lede">
-              Composer and producer in Barcelona. Tell me what you’re working on.
+              Composer and producer in Barcelona. Music for Domino’s, CANADA and ESLAND. What are
+              you working on?
             </p>
           </div>
 
           <nav className="pa__paths" aria-label="Choose your path">
-            {paths.map((path, i) => (
-              <a className="pa__path" key={path.kicker} data-lead={i === 0 || undefined} href={path.href}>
+            {paths.map((path) => (
+              <a className="pa__path" key={path.kicker} data-lead={path.lead || undefined} href={path.href}>
                 <span className="pa__pathKicker">{path.kicker}</span>
                 <span className="pa__pathTitle">{path.title} →</span>
               </a>
@@ -77,58 +81,59 @@ export function Paths() {
         </div>
       </div>
 
-      <section className="pa__music container" id="music">
-        <div className="pa__musicLeft">
-          <p className="pa__eyebrow">
-            <span className="pa__rule" aria-hidden="true" />
-            For film, games &amp; ads
-          </p>
-          <h2 className="pa__h2">Original Soundtracks</h2>
-          <p className="pa__body">
-            Custom music in any genre you need, plus music supervision for your production.
-          </p>
+      <section className="pa__work container" id="work">
+        <p className="pa__eyebrow">
+          <span className="pa__rule" aria-hidden="true" />
+          Custom music for brands, games &amp; film
+        </p>
 
-          <div className="pa__player">
-            <div className="pa__playerRow">
-              <button
-                className="pa__playerBtn"
-                onClick={featured.toggle}
-                aria-label={`${featured.playing ? 'Pause' : 'Play'} ${featured.title}`}
-              >
-                {featured.playing ? <span className="pa__bars" /> : <PlayIcon size={24} />}
-              </button>
-              <div className="pa__playerMeta">
-                <span className="pa__playerState">
-                  {featured.playing ? 'Now playing' : 'Featured'}
-                </span>
-                <span className="pa__playerTitle">{featured.title}</span>
-                <span className="pa__playerArtist">{featured.artist}</span>
-              </div>
-            </div>
-            <div className="pa__progress">
-              <div style={{ width: featured.playing ? '38%' : '0%' }} />
+        <div className="pa__featured">
+          <Placeholder label={featuredWork.placeholder} ratio="16 / 9" />
+          <div className="pa__featuredText">
+            <h2 className="pa__h2">Music that fits the story — in any genre.</h2>
+            <p className="pa__body">
+              Original scores and music supervision for ads, video games, film and events.
+            </p>
+            <div>
+              <a className="pa__btn" href="#contact">
+                Start a project
+              </a>
             </div>
           </div>
         </div>
 
-        <div className="pa__musicRight">
-          <ol className="pa__list">
-            {rest.map((track) => (
-              <li key={track.id}>
-                <button className="pa__track" onClick={track.toggle}>
-                  <span className="pa__trackLeft">
-                    <span className="pa__trackNum">{track.num}</span>
-                    <span className="pa__trackTitle">{track.title}</span>
-                  </span>
-                  <span className="pa__trackAction">Play</span>
-                </button>
-              </li>
-            ))}
-          </ol>
-          <a className="pa__link" href="https://open.spotify.com" target="_blank" rel="noreferrer">
-            ♫ More music →
-          </a>
-        </div>
+        <ul className="pa__tracks">
+          {top.map((track) => (
+            <li key={track.id}>
+              <button
+                className="pa__trackCard"
+                data-playing={track.playing || undefined}
+                onClick={track.toggle}
+                aria-label={`${track.playing ? 'Pause' : 'Play'} ${track.title}`}
+              >
+                <span className="pa__trackBtn" aria-hidden="true">
+                  {track.playing ? <span className="pa__bars" /> : <PlayIcon />}
+                </span>
+                <span className="pa__trackMeta">
+                  <span className="pa__trackTitle">{track.title}</span>
+                  <span className="pa__trackProject">{track.project}</span>
+                </span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="pa__quotes container">
+        {quotes.map((quote) => (
+          <blockquote className="pa__quoteCard" key={quote.name}>
+            <p className="pa__quoteText">“{quote.text}”</p>
+            <footer className="pa__quoteWho">
+              <span className="pa__quoteName">{quote.name}</span>
+              <span className="pa__quoteRole">{quote.role}</span>
+            </footer>
+          </blockquote>
+        ))}
       </section>
 
       <section className="pa__studio container" id="studio">
@@ -136,54 +141,65 @@ export function Paths() {
         <div className="pa__studioText">
           <p className="pa__eyebrow">
             <span className="pa__rule" aria-hidden="true" />
-            For artists
+            For artists &amp; composers
           </p>
           <h2 className="pa__h2">
-            Music Production
+            Production &amp;
             <br />
-            for Artists
+            Mentorship
           </h2>
           <p className="pa__body">
-            From my studio in La Floresta, surrounded by nature, I support the production of your
-            song — in person or remotely. A close, respectful approach where you can explore and
-            grow.
+            From my studio in La Floresta, surrounded by nature, I help you bring your song to life
+            — in person or remotely. For composers and producers, I offer mentorship to build a
+            professional career.
           </p>
-          <ul className="pa__features">
-            {STUDIO_FEATURES.map((f) => (
-              <li key={f}>{f}</li>
-            ))}
-          </ul>
-          <div>
+          <div className="pa__studioActions">
             <a className="pa__btn" href="#contact">
-              Book a visit — no commitment
+              Visit — no commitment
+            </a>
+            <a className="pa__link" href="#contact">
+              Ask about mentoring →
             </a>
           </div>
         </div>
       </section>
 
-      <section className="pa__mentorship container" id="mentorship">
-        <div>
-          <p className="pa__kicker">For composers &amp; producers</p>
-          <p className="pa__mentorTitle">Mentorship to help build a professional career.</p>
+      <section className="pa__dance container" id="ecstatic-dance">
+        <div className="pa__danceText">
+          <p className="pa__kicker">For event organisers</p>
+          <h2 className="pa__h2">Ecstatic Dance DJ</h2>
+          <p className="pa__body">
+            Journeys for free, conscious movement — from slow, grounding rhythms to the peak and
+            back to stillness. For gatherings, retreats and festivals.
+          </p>
+          <div>
+            <a className="pa__btn" href="#contact">
+              {ecstaticDance.cta}
+            </a>
+          </div>
         </div>
-        <a className="pa__btn" href="#contact">
-          Ask about mentoring
-        </a>
+        <Placeholder label={ecstaticDance.placeholder} minHeight={360} className="pa__dancePh" />
       </section>
 
-      <section className="pa__licensing container" id="libraries">
-        <div className="pa__licensingHead">
-          <div>
-            <p className="pa__eyebrow">
-              <span className="pa__rule" aria-hidden="true" />
-              Licensing
-            </p>
-            <h2 className="pa__h2">300+ tracks, ready to license</h2>
-          </div>
+      <section className="pa__licensing container" id="licensing">
+        <div className="pa__licensingText">
+          <p className="pa__eyebrow">
+            <span className="pa__rule" aria-hidden="true" />
+            Licensing
+          </p>
+          <h2 className="pa__h2">300+ tracks &amp; sound packs</h2>
           <p className="pa__body pa__body--narrow">
-            Sorted by style, emotion and narrative use — find the right track on the platform you
+            Sorted by style, emotion and narrative use. Buy and license them on the platform you
             already use.
           </p>
+          <ul className="pa__packs">
+            {packs.map((pack) => (
+              <li key={pack.name}>
+                <span className="pa__packName">{pack.name}</span>
+                <span className="pa__packWhere">{pack.where}</span>
+              </li>
+            ))}
+          </ul>
         </div>
         <ul className="pa__platforms">
           {tools.map((tool) => (
@@ -194,27 +210,35 @@ export function Paths() {
 
       <footer className="pa__footer" id="contact">
         <div className="pa__footerInner container">
-          <div className="pa__footerBrand">
-            <Logo width={160} />
-            <div className="pa__footerDetails">
-              <a href={`mailto:${contact.email}`}>{contact.email}</a>
-              <span>{contact.phone}</span>
-              <span>Barcelona, España</span>
+          <div className="pa__footerAbout">
+            <p className="pa__kickerMuted">About &amp; contact</p>
+            <p className="pa__aboutText">{about.paths}</p>
+            <div>
+              <a className="pa__btn" href={`mailto:${contact.email}`}>
+                Write to me
+              </a>
             </div>
           </div>
-          <ul className="pa__social">
-            {social.map((item) => {
-              const Icon = socialIcons[item.id]
-              return (
-                <li key={item.id}>
-                  <a href={item.href} aria-label={item.label}>
-                    <Icon />
-                  </a>
-                </li>
-              )
-            })}
-          </ul>
+
+          <div className="pa__footerDetails">
+            <span>{contact.email}</span>
+            <span>{contact.phone}</span>
+            <span>{contact.location}</span>
+            <ul className="pa__social">
+              {social.map((item) => {
+                const Icon = socialIcons[item.id]
+                return (
+                  <li key={item.id}>
+                    <a href={item.href} aria-label={item.label}>
+                      <Icon />
+                    </a>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
         </div>
+
         <div className="pa__legal">
           <div className="pa__legalInner container">
             <span>Joel Loopez © {new Date().getFullYear()} · Kit Digital — Next Generation EU</span>

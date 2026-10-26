@@ -1,5 +1,8 @@
 /**
- * The design directions the floating switcher offers.
+ * The design directions the floating switcher offers, rebuilt on the Turn 2
+ * content structure: hero and CTAs → clients → services by priority →
+ * selected work → Ecstatic Dance → testimonials → studio → licensing & packs
+ * → about → contact.
  *
  * - current:   the shipped site
  * - editorial: calm, type-led, the tracklist as a real player
@@ -13,21 +16,31 @@ export const designs = [
   { id: 'bold', label: '1c Wido Mayamé' },
 ]
 
-/** Numbered service rows — 1a lists them, 1c turns them into cards. */
+export const positioning = {
+  eyebrow: 'Composer & Producer · Barcelona',
+  lede: 'I compose custom soundtracks in any genre you need — for ads, video games, events and screen.',
+  reelCta: "Watch the Domino's spot",
+}
+
+/** Named clients carry more weight than platform logos, so they lead. */
+export const clients = ["Domino's", 'CANADA', 'ESLAND']
+
+/** Ordered by commercial priority, not by history. */
 export const services = [
   {
     num: '01',
     title: 'Custom Music',
-    body: 'Original scores for film, games, ads and other media — in any genre you need.',
-    kicker: 'Film · Games · Ads',
+    body: 'Original scores and music supervision for ads, games, film and events.',
+    cta: 'Start a project →',
+    kicker: '01 · Brands · Games · Film · Events',
     cardTitle: 'Custom Music & Supervision',
-    cardBody: 'Original scores in any genre you need.',
+    cardBody: 'Original scores in any genre, written for your story.',
   },
   {
     num: '02',
     title: 'Production for Artists',
-    body: 'Music supervision and production support for your songs, in person or remotely.',
-    kicker: 'Artists',
+    body: 'Bring your song to life in my studio in La Floresta, or remotely.',
+    kicker: '02 · Artists',
     cardTitle: 'Music Production',
     cardBody: 'In my La Floresta studio or remotely.',
   },
@@ -35,27 +48,80 @@ export const services = [
     num: '03',
     title: 'Mentorship',
     body: 'For composers and producers building a professional career.',
-    kicker: 'Composers & Producers',
+    kicker: '03 · Composers',
     cardTitle: 'Mentorship',
     cardBody: 'Build a professional career in music.',
   },
   {
     num: '04',
     title: 'Licensing',
-    body: 'Over 300 tracks ready for audiovisual projects, sorted by style, emotion and narrative use.',
-    kicker: 'Licensing',
-    cardTitle: '300+',
-    cardBody: 'tracks on AudioJungle, Pond5, MotionArray, Envato, Unity, Unreal and more.',
+    body: '300+ ready-to-use tracks and sound packs on the platforms you already use.',
+    kicker: '04 · Licensing',
+    cardTitle: '300+ tracks & packs',
+    cardBody: 'On AudioJungle, Pond5, MotionArray, Unity, Unreal and more.',
+  },
+  {
+    num: '05',
+    title: 'Ecstatic Dance DJ',
+    body: 'Live sets for conscious dance gatherings, retreats and festivals.',
   },
 ]
 
-/** 1b asks the visitor who they are and sends them down one of these. */
+/** 2b asks the visitor who they are; the first option is the lead offer. */
 export const paths = [
-  { kicker: "I'm a filmmaker or studio", title: 'Custom music for film, games & ads', href: '#services' },
-  { kicker: "I'm an artist", title: 'Produce my song in the studio', href: '#about' },
-  { kicker: "I'm a composer", title: 'Mentorship for a professional career', href: '#mentorship' },
-  { kicker: 'I need a track now', title: 'License from 300+ tracks', href: '#libraries' },
+  { kicker: 'Brands, games & film', title: 'Commission original music', href: '#work', lead: true },
+  { kicker: 'Artists', title: 'Produce my song', href: '#studio' },
+  { kicker: 'Composers', title: 'Get mentorship', href: '#studio' },
+  { kicker: 'Need a track now', title: 'License music', href: '#licensing' },
+  { kicker: 'Event organisers', title: 'Book an ecstatic dance DJ', href: '#dance' },
 ]
+
+export const featuredWork = {
+  kicker: 'Advertising',
+  title: "Domino's Pizza",
+  body: 'Original music for the campaign spot.',
+  placeholder: "Domino's Pizza spot — Vimeo embed",
+}
+
+export const ecstaticDance = {
+  kicker: 'Ecstatic Dance',
+  title: ['Music to move', 'the body freely.'],
+  body: 'I DJ ecstatic dance journeys — from slow, grounding rhythms to the peak and back to stillness. For gatherings, retreats and festivals.',
+  cta: 'Book a DJ set',
+  placeholder: 'Photo — Joel DJing an ecstatic dance',
+}
+
+export const quotes = [
+  {
+    text: 'Working with Joel means the music is in good hands. He composed the ESLAND soundtrack — professional, sensitive and efficient. He turns any idea into sound.',
+    name: 'Paco Chavinet',
+    role: 'Creative Director at FanContent',
+  },
+  {
+    text: "Pure talent, quick delivery, and the best vibes. Joel's a dream to work with.",
+    name: 'Alex Gargot',
+    role: 'Director at CANADA',
+  },
+  {
+    text: 'Joel is really nice to work with. Thanks to his guidance our project came out perfect. Hoping we can work together again soon!',
+    name: 'flxrence',
+    role: 'Client on SoundBetter',
+  },
+]
+
+export const packs = [
+  { name: 'Fantasy Orchestral', where: 'AudioJungle' },
+  { name: '8-Bit Chiptune', where: 'AudioJungle' },
+  { name: 'Acoustic Guitar', where: 'AudioJungle' },
+]
+
+export const about = {
+  editorial:
+    "I'm Joel López, a composer and producer based in Barcelona. I've written music for Domino's, CANADA and ESLAND — and what matters most to me is the human connection behind every project.",
+  paths:
+    "I'm Joel López, a composer and producer in Barcelona. Tell me about your project — I usually reply within a couple of days.",
+  bold: "From my studio in La Floresta, surrounded by nature, I write for brands, games and artists. What matters most to me is the human connection — you're warmly invited to visit, no pressure, no commitment.",
+}
 
 export const consoleImage =
   'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1600&q=80'

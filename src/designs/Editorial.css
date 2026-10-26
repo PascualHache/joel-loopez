@@ -126,60 +126,29 @@
   border-radius: var(--radius-sm);
 }
 
-/* --- Licensing strip --- */
+/* --- Client band --- */
 .ed__strip {
   border-block: 1px solid var(--gray-5);
 }
 
 .ed__stripInner {
-  padding-block: var(--space-4);
-  font-size: 13px;
-  color: var(--gray-10);
-  white-space: nowrap;
-  /* No scrollbar: the strip scrolls itself. */
-  overflow: hidden;
-}
-
-.ed__marquee {
   display: flex;
-  width: max-content;
-  animation: ed-marquee 45s linear infinite;
-}
-
-.ed__marquee:hover {
-  animation-play-state: paused;
-}
-
-.ed__marqueeGroup {
-  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-6);
-  padding-right: var(--space-6);
+  gap: var(--space-4) var(--space-8);
+  padding-block: var(--space-5);
 }
 
-@keyframes ed-marquee {
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-/*
- * The global reduced-motion rule only shortens animations, which would snap the
- * track to its end position. Drop the animation and hand scrolling back instead.
- */
-@media (prefers-reduced-motion: reduce) {
-  .ed__marquee {
-    animation: none;
-  }
-
-  .ed__stripInner {
-    overflow-x: auto;
-  }
-}
-
-.ed__stripLead {
-  color: #fff;
-  font-weight: 600;
+.ed__clients {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-7);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 /* --- Numbered services --- */
@@ -240,6 +209,12 @@
   align-items: end;
   justify-content: space-between;
   gap: var(--space-4);
+}
+
+/* Each line is its own span, so they need stacking or they run together. */
+.ed__h2--lines {
+  display: flex;
+  flex-direction: column;
 }
 
 .ed__h2 {
@@ -431,10 +406,206 @@
   gap: var(--space-5);
 }
 
+/* --- Services --- */
+.ed__row[data-lead] .ed__rowTitle {
+  font-size: clamp(2rem, 3.4vw, 2.75rem);
+  line-height: 1.1;
+}
+
+.ed__rowBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+
+/* --- Selected work --- */
+.ed__featured {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: var(--ed-gutter);
+  align-items: end;
+}
+
+.ed__featuredText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.ed__featuredKicker {
+  font-size: var(--text-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+}
+
+.ed__featuredTitle {
+  font-size: var(--text-2xl);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* --- Ecstatic Dance --- */
+.ed__dance {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--brand-red);
+  color: #fff;
+}
+
+.ed__danceText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  justify-content: center;
+  padding: var(--space-9) var(--ed-gutter);
+}
+
+.ed__labelLight {
+  font-size: var(--text-xs);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.ed__danceBody {
+  max-width: 44ch;
+  font-size: var(--text-base);
+  line-height: 1.7;
+}
+
+.ed__btnLight {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-full);
+  background: #fff;
+  color: var(--brand-red-ink);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  transition: color var(--transition);
+}
+
+.ed__btnLight:hover {
+  color: var(--brand-red);
+}
+
+/* --- Testimonials --- */
+.ed__quotes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--ed-gutter);
+  padding-block: var(--space-10);
+}
+
+.ed__quoteCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin: 0;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--gray-6);
+}
+
+.ed__quoteText {
+  font-size: var(--text-lg);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+.ed__quoteWho {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: auto;
+}
+
+.ed__quoteName {
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.ed__quoteRole {
+  font-size: 13px;
+  color: var(--accent-text);
+}
+
+/* --- Licensing & packs --- */
+.ed__h3 {
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  font-weight: 300;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+}
+
+.ed__licensing {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: var(--ed-gutter);
+  padding-block: var(--space-10);
+}
+
+.ed__licensingText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  align-items: flex-start;
+}
+
+.ed__packs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ed__packs li {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.ed__packName {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.ed__packWhere {
+  font-size: var(--text-xs);
+  color: var(--gray-10);
+}
+
+/* --- About --- */
+.ed__about {
+  display: grid;
+  grid-template-columns: 0.6fr 1.4fr;
+  gap: var(--ed-gutter);
+  padding-bottom: var(--space-10);
+}
+
+.ed__aboutText {
+  font-size: var(--text-2xl);
+  font-weight: 300;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+
 @media (max-width: 900px) {
   .ed__hero,
   .ed__split,
-  .ed__studio {
+  .ed__studio,
+  .ed__featured,
+  .ed__dance,
+  .ed__licensing,
+  .ed__about {
+    grid-template-columns: 1fr;
+  }
+
+  .ed__quotes,
+  .ed__packs {
     grid-template-columns: 1fr;
   }
 

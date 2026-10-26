@@ -1,0 +1,22 @@
+.ph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  text-align: center;
+}
+
+.ph[data-tone='dark'] {
+  background: var(--gray-3);
+  border: 1px dashed var(--gray-7);
+  color: var(--text-muted);
+}
+
+/* On the red bands a grey dashed box would disappear. */
+.ph[data-tone='light'] {
+  background: var(--black-a5);
+  border: 1px dashed var(--white-a8);
+  color: #fff;
+}

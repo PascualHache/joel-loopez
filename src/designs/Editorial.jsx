@@ -1,13 +1,24 @@
-import { consoleImage, services, studioImage } from '../data/designs'
+import {
+  about,
+  clients,
+  consoleImage,
+  ecstaticDance,
+  featuredWork,
+  packs,
+  positioning,
+  quotes,
+  services,
+  studioImage,
+} from '../data/designs'
 import { contact, social } from '../data/site'
-import { tools } from '../data/tools'
 import { tracks } from '../data/tracks'
 import { useTrackPlayer } from '../hooks/useTrackPlayer'
 import { Logo } from '../components/Logo'
 import { PlayIcon } from '../components/Icons'
+import { Placeholder } from '../components/Placeholder'
 import './Editorial.css'
 
-const NAV = ['Services', 'Music', 'Studio', 'Licensing']
+const NAV = ['Work', 'Services', 'Ecstatic Dance', 'Studio', 'Licensing']
 
 export function Editorial() {
   const { items } = useTrackPlayer(tracks)
@@ -19,7 +30,7 @@ export function Editorial() {
           <Logo width={120} />
           <nav className="ed__nav" aria-label="Primary">
             {NAV.map((label) => (
-              <a key={label} href={`#${label.toLowerCase()}`}>
+              <a key={label} href={`#${label.toLowerCase().replace(/ /g, '-')}`}>
                 {label}
               </a>
             ))}
@@ -37,22 +48,19 @@ export function Editorial() {
         <div className="ed__heroText">
           <p className="ed__kicker">
             <span className="ed__rule" aria-hidden="true" />
-            Composer &amp; Producer · Barcelona
+            {positioning.eyebrow}
           </p>
           <h1 className="ed__h1">
-            Original music for film, games, ads <strong>&amp; artists.</strong>
+            Original music for brands, games <strong>&amp; film.</strong>
           </h1>
-          <p className="ed__lede">
-            I create custom music in any genre you need — and support artists and composers
-            from my studio in La Floresta.
-          </p>
+          <p className="ed__lede">{positioning.lede}</p>
           <div className="ed__actions">
             <a className="ed__btn" href="#contact">
               Start a project
             </a>
-            <a className="ed__ghost" href="#music">
+            <a className="ed__ghost" href="#work">
               <PlayIcon />
-              Listen to the reel
+              {positioning.reelCta}
             </a>
           </div>
         </div>
@@ -61,40 +69,50 @@ export function Editorial() {
 
       <div className="ed__strip">
         <div className="ed__stripInner container">
-          <div className="ed__marquee">
-            {/* Two identical groups: the track slides exactly one group, so the
-                loop is seamless. The copy is hidden from assistive tech. */}
-            {[0, 1].map((copy) => (
-              <div className="ed__marqueeGroup" key={copy} aria-hidden={copy === 1 || undefined}>
-                <span className="ed__stripLead">300+ tracks licensed on</span>
-                {tools.map((tool) => (
-                  <span key={tool.id}>{tool.name}</span>
-                ))}
-              </div>
+          <span className="ed__label">Music for</span>
+          <ul className="ed__clients">
+            {clients.map((client) => (
+              <li key={client}>{client}</li>
             ))}
-          </div>
+          </ul>
         </div>
       </div>
 
       <section className="ed__split container" id="services">
-        <p className="ed__label">What I do</p>
+        <p className="ed__label">Services</p>
         <div className="ed__rows">
-          {services.map((service) => (
-            <article className="ed__row" key={service.num}>
+          {services.map((service, i) => (
+            <article className="ed__row" key={service.num} data-lead={i === 0 || undefined}>
               <span className="ed__num">{service.num}</span>
               <h2 className="ed__rowTitle">{service.title}</h2>
-              <p className="ed__rowBody">{service.body}</p>
+              <div className="ed__rowBody">
+                <p>{service.body}</p>
+                {service.cta && (
+                  <a className="ed__link" href="#contact">
+                    {service.cta}
+                  </a>
+                )}
+              </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="ed__music container" id="music">
+      <section className="ed__music container" id="work">
         <div className="ed__musicHead">
-          <h2 className="ed__h2">Original Soundtracks</h2>
+          <h2 className="ed__h2">Selected Work</h2>
           <a className="ed__link" href="https://open.spotify.com" target="_blank" rel="noreferrer">
             ♫ All music →
           </a>
+        </div>
+
+        <div className="ed__featured">
+          <Placeholder label={featuredWork.placeholder} ratio="16 / 9" />
+          <div className="ed__featuredText">
+            <p className="ed__featuredKicker">{featuredWork.kicker}</p>
+            <p className="ed__featuredTitle">{featuredWork.title}</p>
+            <p className="ed__rowBody">{featuredWork.body}</p>
+          </div>
         </div>
 
         <ol className="ed__list">
@@ -112,7 +130,7 @@ export function Editorial() {
                 </span>
                 <span className="ed__trackMeta">
                   <span className="ed__trackTitle">{track.title}</span>
-                  <span className="ed__trackArtist">{track.artist}</span>
+                  <span className="ed__trackArtist">{track.project}</span>
                 </span>
                 <span className="ed__trackState">{track.playing ? 'Now playing' : ''}</span>
               </button>
@@ -121,24 +139,85 @@ export function Editorial() {
         </ol>
       </section>
 
-      <section className="ed__studio" id="studio">
-        <img src={studioImage} alt="Joel Loopez in his studio in La Floresta" loading="lazy" />
-        <div className="ed__studioText">
-          <p className="ed__label">The studio · La Floresta</p>
-          <blockquote className="ed__quote">
-            “A space where we work calmly, with attention to detail and deep listening.”
-          </blockquote>
-          <p className="ed__studioBody">
-            Professional microphones and gear, acoustic and electronic instruments, and a wide
-            arsenal of plugins — surrounded by nature. If you have a song idea in mind, you’re
-            warmly invited to visit — no pressure, no commitment.
-          </p>
+      <section className="ed__dance" id="ecstatic-dance">
+        <div className="ed__danceText">
+          <p className="ed__labelLight">{ecstaticDance.kicker}</p>
+          <h2 className="ed__h2 ed__h2--lines">
+            {ecstaticDance.title.map((line) => (
+              <span key={line}>{line}</span>
+            ))}
+          </h2>
+          <p className="ed__danceBody">{ecstaticDance.body}</p>
           <div>
-            <a className="ed__btn" href="#contact">
-              Visit the studio
+            <a className="ed__btnLight" href="#contact">
+              {ecstaticDance.cta}
             </a>
           </div>
         </div>
+        <Placeholder label={ecstaticDance.placeholder} tone="light" minHeight={420} />
+      </section>
+
+      <section className="ed__quotes container">
+        {quotes.map((quote) => (
+          <blockquote className="ed__quoteCard" key={quote.name}>
+            <p className="ed__quoteText">“{quote.text}”</p>
+            <footer className="ed__quoteWho">
+              <span className="ed__quoteName">{quote.name}</span>
+              <span className="ed__quoteRole">{quote.role}</span>
+            </footer>
+          </blockquote>
+        ))}
+      </section>
+
+      <section className="ed__studio" id="studio">
+        <img src={studioImage} alt="Joel Loopez in his studio in La Floresta" loading="lazy" />
+        <div className="ed__studioText">
+          <p className="ed__label">For artists · La Floresta studio</p>
+          <h2 className="ed__h3">
+            Produce your song,
+            <br />
+            surrounded by nature.
+          </h2>
+          <p className="ed__studioBody">
+            Professional mics and gear, acoustic and electronic instruments, and a wide arsenal of
+            plugins. A calm space, with attention to detail and deep listening — in person or
+            remotely.
+          </p>
+          <div>
+            <a className="ed__btn" href="#contact">
+              Visit — no commitment
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="ed__licensing container" id="licensing">
+        <div className="ed__licensingText">
+          <p className="ed__label">Licensing &amp; packs</p>
+          <h2 className="ed__h3">300+ tracks, ready to license.</h2>
+          <p className="ed__studioBody">
+            Original compositions, musical fragments and soundscapes — sorted by style, emotion and
+            narrative use. Available on AudioJungle, Pond5, MotionArray, Envato, Unity, Unreal and
+            more.
+          </p>
+          <a className="ed__link" href="https://audiojungle.net" target="_blank" rel="noreferrer">
+            Browse on the platforms →
+          </a>
+        </div>
+        <ul className="ed__packs">
+          {packs.map((pack) => (
+            <li key={pack.name}>
+              <Placeholder label="Pack cover" ratio="3 / 4" />
+              <span className="ed__packName">{pack.name}</span>
+              <span className="ed__packWhere">{pack.where}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="ed__about container" id="about">
+        <p className="ed__label">About</p>
+        <p className="ed__aboutText">{about.editorial}</p>
       </section>
 
       <section className="ed__contact container" id="contact">
