@@ -11,7 +11,7 @@ import {
   studioImage,
 } from '../data/designs'
 import { contact, social } from '../data/site'
-import { tracks } from '../data/tracks'
+import { useCanciones } from '../hooks/useCanciones'
 import { useTrackPlayer } from '../hooks/useTrackPlayer'
 import { Logo } from '../components/Logo'
 import { PlayIcon } from '../components/Icons'
@@ -21,7 +21,7 @@ import './Editorial.css'
 const NAV = ['Work', 'Services', 'Ecstatic Dance', 'Studio', 'Licensing']
 
 export function Editorial() {
-  const { items } = useTrackPlayer(tracks)
+  const { items } = useTrackPlayer(useCanciones().tracks ?? [])
 
   return (
     <div className="ed">

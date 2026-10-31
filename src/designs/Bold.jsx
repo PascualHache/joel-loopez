@@ -8,7 +8,7 @@ import {
   studioImage,
 } from '../data/designs'
 import { contact, social } from '../data/site'
-import { tracks } from '../data/tracks'
+import { useCanciones } from '../hooks/useCanciones'
 import { useTrackPlayer } from '../hooks/useTrackPlayer'
 import { Logo } from '../components/Logo'
 import { PlayIcon } from '../components/Icons'
@@ -18,7 +18,7 @@ import './Bold.css'
 const NAV = ['Work', 'Services', 'Ecstatic Dance', 'Licensing']
 
 export function Bold() {
-  const { items } = useTrackPlayer(tracks)
+  const { items } = useTrackPlayer(useCanciones().tracks ?? [])
   const [lead, ...rest] = services.slice(0, 4)
 
   return (

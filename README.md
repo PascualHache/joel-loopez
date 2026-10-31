@@ -41,9 +41,26 @@ Copy and media live in [`src/data/site.js`](src/data/site.js). Hero and about
 images currently point at Unsplash placeholders; drop real assets in `public/`
 and reference them as `/filename.jpg`.
 
-Tracks in [`src/data/tracks.js`](src/data/tracks.js) render as styled
-placeholders. Set a track's `spotifyId` and `TrackCard` renders the real Spotify
-embed instead.
+Songs are client-editable in Sanity (project `cabiyw63`, dataset `production`).
+The Studio lives in [`studio-joel-loopez/`](studio-joel-loopez/) with its own
+`package.json` and is deployed to Sanity's hosting, not Vercel. The site reads
+published songs from the API CDN at runtime ([`src/lib/sanity.js`](src/lib/sanity.js),
+[`useCanciones`](src/hooks/useCanciones.js)), so content changes need no deploy.
+
+The site needs these variables in `.env.local` and in Vercel:
+
+```bash
+VITE_SANITY_PROJECT_ID=cabiyw63
+VITE_SANITY_DATASET=production
+```
+
+Studio, from `studio-joel-loopez/`:
+
+```bash
+npm run dev                                   # http://localhost:3333
+npx sanity deploy                             # after any schema/config change
+npx sanity cors add https://your-domain.com --no-credentials
+```
 
 ## Deploying to Vercel
 

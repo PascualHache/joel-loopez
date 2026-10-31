@@ -10,7 +10,7 @@ import {
 } from '../data/designs'
 import { contact, social } from '../data/site'
 import { tools } from '../data/tools'
-import { tracks } from '../data/tracks'
+import { useCanciones } from '../hooks/useCanciones'
 import { useTrackPlayer } from '../hooks/useTrackPlayer'
 import { Logo } from '../components/Logo'
 import {
@@ -35,7 +35,7 @@ const socialIcons = {
 }
 
 export function Paths() {
-  const { items } = useTrackPlayer(tracks)
+  const { items } = useTrackPlayer(useCanciones().tracks ?? [])
   const top = items.slice(0, 4)
 
   return (

@@ -11,7 +11,7 @@ import {
   turn3,
 } from '../../data/designs'
 import { contact, social } from '../../data/site'
-import { tracks } from '../../data/tracks'
+import { useCanciones } from '../../hooks/useCanciones'
 import { useTrackPlayer } from '../../hooks/useTrackPlayer'
 import { ensureTurn3Fonts } from '../../lib/fonts'
 import { Logo } from '../../components/Logo'
@@ -25,7 +25,7 @@ import './turn3.css'
  * that redefines the --t3-* tokens below.
  */
 export function Turn3Page({ variant, theme, hero, lightLogo = false, placeholderTone = 'dark' }) {
-  const { items } = useTrackPlayer(tracks)
+  const { items } = useTrackPlayer(useCanciones().tracks ?? [])
 
   useEffect(() => {
     ensureTurn3Fonts()

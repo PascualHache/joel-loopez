@@ -1,11 +1,12 @@
 import { site } from '../data/site'
-import { tracks } from '../data/tracks'
+import { useCanciones } from '../hooks/useCanciones'
 import { SectionHeading } from './SectionHeading'
 import { TrackCard } from './TrackCard'
 import './Music.css'
 
 export function Music() {
   const { heading } = site.music
+  const { tracks, error } = useCanciones()
 
   return (
     <section className="music section" id="music">
@@ -23,11 +24,19 @@ export function Music() {
           </a>
         </div>
 
-        <div className="music__grid">
-          {tracks.map((track) => (
-            <TrackCard key={track.id} track={track} />
-          ))}
-        </div>
+        {error ? (
+          <p className="music__status">Couldn't load the songs. Please try again in a moment.</p>
+        ) : !tracks ? (
+          <p className="music__status" aria-busy="true">
+            Loading songs…
+          </p>
+        ) : (
+          <div className="music__grid">
+            {tracks.map((track) => (
+              <TrackCard key={track.id} track={track} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   )

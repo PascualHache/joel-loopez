@@ -26,3 +26,8 @@
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: var(--space-4);
 }
+
+.music__status {
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
