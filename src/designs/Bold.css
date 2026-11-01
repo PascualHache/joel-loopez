@@ -127,10 +127,6 @@
   padding-block: var(--space-5);
 }
 
-.bo__sub {
-  min-height: 70vh;
-}
-
 /* --- Paths: a service index that jumps to each offer --- */
 /* 1px gaps over a lighter ground give the grid its hairlines. */
 .bo__paths {
