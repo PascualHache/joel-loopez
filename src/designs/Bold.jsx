@@ -17,9 +17,17 @@ import './Bold.css'
 
 const NAV = ['Work', 'Services', 'Ecstatic Dance', 'Licensing']
 
+/** 1c has no section per service, so each one jumps to where its content lives. */
+const SERVICE_HREF = {
+  '01': '#work',
+  '02': '#about',
+  '03': '#about',
+  '04': '#work',
+  '05': '#ecstatic-dance',
+}
+
 export function Bold() {
   const { items } = useTrackPlayer(tracks)
-  const [lead, ...rest] = services.slice(0, 4)
 
   return (
     <div className="bo">
@@ -70,6 +78,23 @@ export function Bold() {
         </div>
       </div>
 
+      <div className="container" id="services">
+        <nav className="bo__paths" aria-label="What I do">
+          {services.map((service, i) => (
+            <a
+              className="bo__path"
+              key={service.num}
+              data-lead={i === 0 || undefined}
+              href={SERVICE_HREF[service.num]}
+            >
+              <span className="bo__pathKicker">{service.num}</span>
+              <span className="bo__pathTitle">{service.title} →</span>
+              <span className="bo__pathBody">{service.body}</span>
+            </a>
+          ))}
+        </nav>
+      </div>
+
       <section className="bo__music container" id="work">
         <div className="bo__musicHead">
           <h2 className="bo__h2">Press play.</h2>
@@ -105,27 +130,6 @@ export function Bold() {
             </button>
           ))}
         </div>
-      </section>
-
-      <section className="bo__cards container" id="services">
-        <article className="bo__lead">
-          <div className="bo__leadText">
-            <span className="bo__leadKicker">{lead.kicker}</span>
-            <span className="bo__leadTitle">{lead.cardTitle}</span>
-            <span className="bo__leadBody">{lead.cardBody}</span>
-          </div>
-          <a className="bo__btn" href="#contact">
-            Start a project
-          </a>
-        </article>
-
-        {rest.map((service) => (
-          <article className="bo__card" key={service.num}>
-            <span className="bo__cardKicker">{service.kicker}</span>
-            <span className="bo__cardTitle">{service.cardTitle}</span>
-            <span className="bo__cardBody">{service.cardBody}</span>
-          </article>
-        ))}
       </section>
 
       <section className="bo__dance" id="ecstatic-dance">
