@@ -7,6 +7,7 @@ import {
   services,
   studioImage,
 } from '../data/designs'
+import { Link, NavLink } from 'react-router-dom'
 import { contact, social } from '../data/site'
 import { tracks } from '../data/tracks'
 import { useTrackPlayer } from '../hooks/useTrackPlayer'
@@ -15,7 +16,8 @@ import { PlayIcon } from '../components/Icons'
 import { Placeholder } from '../components/Placeholder'
 import './Bold.css'
 
-const NAV = ['Work', 'Services', 'Ecstatic Dance', 'Licensing']
+/** The top nav lists subviews only; moving around the home is done with anchors. */
+const NAV = [{ label: 'Ecstatic Dance', to: '/ecstatic-dance' }]
 
 /** 1c has no section per service, so each one jumps to where its content lives. */
 const SERVICE_HREF = {
@@ -26,6 +28,28 @@ const SERVICE_HREF = {
   '05': '#ecstatic-dance',
 }
 
+/** Shared by the home and every 1c subview. */
+export function BoldHeader() {
+  return (
+    <header className="bo__header">
+      <Link to="/" aria-label="Joel Loopez — home">
+        <Logo width={120} />
+      </Link>
+      <nav className="bo__nav" aria-label="Primary">
+        {NAV.map((item) => (
+          <NavLink key={item.to} to={item.to}>
+            {item.label}
+          </NavLink>
+        ))}
+        <span className="bo__lang">ES / EN</span>
+        <Link className="bo__btnLight" to="/#contact">
+          Start a project
+        </Link>
+      </nav>
+    </header>
+  )
+}
+
 export function Bold() {
   const { items } = useTrackPlayer(tracks)
 
@@ -33,20 +57,7 @@ export function Bold() {
     <div className="bo">
       <div className="bo__top" id="top">
         <div className="bo__topInner container">
-          <header className="bo__header">
-            <Logo width={120} />
-            <nav className="bo__nav" aria-label="Primary">
-              {NAV.map((label) => (
-                <a key={label} href={`#${label.toLowerCase().replace(/ /g, '-')}`}>
-                  {label}
-                </a>
-              ))}
-              <span className="bo__lang">ES / EN</span>
-              <a className="bo__btnLight" href="#contact">
-                Start a project
-              </a>
-            </nav>
-          </header>
+          <BoldHeader />
 
           <h1 className="bo__h1">
             Music for

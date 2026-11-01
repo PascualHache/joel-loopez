@@ -37,6 +37,11 @@
   opacity: 0.75;
 }
 
+.bo__nav a[aria-current='page'] {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
 .bo__lang {
   opacity: 0.8;
 }
@@ -115,6 +120,15 @@
   height: 360px;
   object-fit: cover;
   border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+/* --- Subviews --- */
+.bo__subHead {
+  padding-block: var(--space-5);
+}
+
+.bo__sub {
+  min-height: 70vh;
 }
 
 /* --- Paths: a service index that jumps to each offer --- */
