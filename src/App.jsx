@@ -1,22 +1,18 @@
 import { useEffect, useState } from 'react'
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import { DesignSwitcher } from './components/DesignSwitcher'
 import { designs } from './data/designs'
 import { Current } from './designs/Current'
-import { Editorial } from './designs/Editorial'
 import { Paths } from './designs/Paths'
 import { Bold } from './designs/Bold'
-import { PaperMoss } from './designs/turn3/PaperMoss'
+import { BoldEcstaticDance } from './designs/BoldEcstaticDance'
 import { NightForest } from './designs/turn3/NightForest'
-import { ClayBreath } from './designs/turn3/ClayBreath'
 
 const PAGES = {
   current: Current,
-  editorial: Editorial,
   paths: Paths,
   bold: Bold,
-  paper: PaperMoss,
   night: NightForest,
-  clay: ClayBreath,
 }
 
 const STORAGE_KEY = 'joel-loopez:design'
@@ -31,8 +27,24 @@ function readStored() {
   }
 }
 
+/**
+ * Subview links can carry a hash (`/#contact`), which the router does not
+ * scroll to on its own; a plain page change starts at the top.
+ */
+function useScrollOnNavigate() {
+  const { pathname, hash } = useLocation()
+
+  useEffect(() => {
+    const target = hash && document.getElementById(hash.slice(1))
+    if (target) target.scrollIntoView()
+    else window.scrollTo({ top: 0, behavior: 'auto' })
+  }, [pathname, hash])
+}
+
 export default function App() {
   const [design, setDesign] = useState(readStored)
+  const navigate = useNavigate()
+  useScrollOnNavigate()
 
   useEffect(() => {
     try {
@@ -44,6 +56,7 @@ export default function App() {
 
   function choose(next) {
     setDesign(next)
+    navigate('/')
     window.scrollTo({ top: 0, behavior: 'auto' })
   }
 
@@ -51,7 +64,12 @@ export default function App() {
 
   return (
     <>
-      <Page />
+      <Routes>
+        <Route path="/" element={<Page />} />
+        {/* 1c subviews: the top nav lists only these; the home scrolls by anchors. */}
+        <Route path="/ecstatic-dance" element={<BoldEcstaticDance />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
       <DesignSwitcher value={design} onChange={choose} />
     </>
   )

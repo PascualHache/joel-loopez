@@ -7,6 +7,7 @@ import {
   services,
   studioImage,
 } from '../data/designs'
+import { Link, NavLink } from 'react-router-dom'
 import { contact, social } from '../data/site'
 import { tracks } from '../data/tracks'
 import { useTrackPlayer } from '../hooks/useTrackPlayer'
@@ -15,30 +16,48 @@ import { PlayIcon } from '../components/Icons'
 import { Placeholder } from '../components/Placeholder'
 import './Bold.css'
 
-const NAV = ['Work', 'Services', 'Ecstatic Dance', 'Licensing']
+/** The top nav lists subviews only; moving around the home is done with anchors. */
+const NAV = [{ label: 'Ecstatic Dance', to: '/ecstatic-dance' }]
+
+/** 1c has no section per service, so each one jumps to where its content lives. */
+const SERVICE_HREF = {
+  '01': '#work',
+  '02': '#about',
+  '03': '#about',
+  '04': '#work',
+  '05': '#ecstatic-dance',
+}
+
+/** Shared by the home and every 1c subview. */
+export function BoldHeader() {
+  return (
+    <header className="bo__header">
+      <Link to="/" aria-label="Joel Loopez — home">
+        <Logo width={120} />
+      </Link>
+      <nav className="bo__nav" aria-label="Primary">
+        {NAV.map((item) => (
+          <NavLink key={item.to} to={item.to}>
+            {item.label}
+          </NavLink>
+        ))}
+        <span className="bo__lang">ES / EN</span>
+        <Link className="bo__btnLight" to="/#contact">
+          Start a project
+        </Link>
+      </nav>
+    </header>
+  )
+}
 
 export function Bold() {
   const { items } = useTrackPlayer(tracks)
-  const [lead, ...rest] = services.slice(0, 4)
 
   return (
     <div className="bo">
       <div className="bo__top" id="top">
         <div className="bo__topInner container">
-          <header className="bo__header">
-            <Logo width={120} />
-            <nav className="bo__nav" aria-label="Primary">
-              {NAV.map((label) => (
-                <a key={label} href={`#${label.toLowerCase().replace(/ /g, '-')}`}>
-                  {label}
-                </a>
-              ))}
-              <span className="bo__lang">ES / EN</span>
-              <a className="bo__btnLight" href="#contact">
-                Start a project
-              </a>
-            </nav>
-          </header>
+          <BoldHeader />
 
           <h1 className="bo__h1">
             Music for
@@ -68,6 +87,23 @@ export function Bold() {
             />
           </div>
         </div>
+      </div>
+
+      <div className="container" id="services">
+        <nav className="bo__paths" aria-label="What I do">
+          {services.map((service, i) => (
+            <a
+              className="bo__path"
+              key={service.num}
+              data-lead={i === 0 || undefined}
+              href={SERVICE_HREF[service.num]}
+            >
+              <span className="bo__pathKicker">{service.num}</span>
+              <span className="bo__pathTitle">{service.title} →</span>
+              <span className="bo__pathBody">{service.body}</span>
+            </a>
+          ))}
+        </nav>
       </div>
 
       <section className="bo__music container" id="work">
@@ -105,27 +141,6 @@ export function Bold() {
             </button>
           ))}
         </div>
-      </section>
-
-      <section className="bo__cards container" id="services">
-        <article className="bo__lead">
-          <div className="bo__leadText">
-            <span className="bo__leadKicker">{lead.kicker}</span>
-            <span className="bo__leadTitle">{lead.cardTitle}</span>
-            <span className="bo__leadBody">{lead.cardBody}</span>
-          </div>
-          <a className="bo__btn" href="#contact">
-            Start a project
-          </a>
-        </article>
-
-        {rest.map((service) => (
-          <article className="bo__card" key={service.num}>
-            <span className="bo__cardKicker">{service.kicker}</span>
-            <span className="bo__cardTitle">{service.cardTitle}</span>
-            <span className="bo__cardBody">{service.cardBody}</span>
-          </article>
-        ))}
       </section>
 
       <section className="bo__dance" id="ecstatic-dance">
