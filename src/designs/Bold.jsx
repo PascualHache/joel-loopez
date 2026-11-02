@@ -2,12 +2,11 @@ import {
   about,
   clients,
   ecstaticDance,
-  featuredWork,
   quotes,
   services,
   studioImage,
 } from '../data/designs'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { contact, social } from '../data/site'
 import { tracks } from '../data/tracks'
 import { useTrackPlayer } from '../hooks/useTrackPlayer'
@@ -17,18 +16,23 @@ import { Placeholder } from '../components/Placeholder'
 import './Bold.css'
 
 /** The top nav lists subviews only; moving around the home is done with anchors. */
-const NAV = [{ label: 'Ecstatic Dance', to: '/ecstatic-dance' }]
+const NAV = [
+  { label: 'Music', to: '/music-service' },
+  { label: 'The Studio', to: '/the-studio' },
+  { label: 'Licensing', to: '/licensing' },
+  { label: 'Ecstatic Dance', to: '/ecstatic-dance' },
+]
 
-/** 1c has no section per service, so each one jumps to where its content lives. */
-const SERVICE_HREF = {
-  '01': '#work',
-  '02': '#about',
-  '03': '#about',
-  '04': '#work',
-  '05': '#ecstatic-dance',
+/** Each service opens its subview; production and mentorship share the studio, each at its own card. */
+const SERVICE_ROUTE = {
+  '01': '/music-service',
+  '02': '/the-studio#production',
+  '03': '/the-studio#mentorship',
+  '04': '/licensing',
+  '05': '/ecstatic-dance',
 }
 
-/** Shared by the home and every 1c subview. */
+/** Shared by the home and every B subview. */
 export function BoldHeader() {
   return (
     <header className="bo__header">
@@ -50,6 +54,112 @@ export function BoldHeader() {
   )
 }
 
+/**
+ * The service index. On the home it leads with the first service; on a
+ * subview it leads with — and marks as current — the service you are on.
+ */
+const pathOf = (to) => to.split('#')[0]
+
+export function ServicePaths() {
+  const { pathname } = useLocation()
+  const here = Object.values(SERVICE_ROUTE).some((to) => pathOf(to) === pathname)
+
+  return (
+    <nav className="bo__paths" aria-label="What I do">
+      {services.map((service, i) => {
+        const to = SERVICE_ROUTE[service.num]
+        const current = pathOf(to) === pathname
+        const lead = here ? current : i === 0
+        return (
+          <Link
+            className="bo__path"
+            key={service.num}
+            data-lead={lead || undefined}
+            aria-current={current ? 'page' : undefined}
+            to={to}
+          >
+            <span className="bo__pathKicker">{service.num}</span>
+            <span className="bo__pathTitle">{service.title} →</span>
+            <span className="bo__pathBody">{service.body}</span>
+          </Link>
+        )
+      })}
+    </nav>
+  )
+}
+
+/** The red contact block that closes the home and every B subview. */
+export function BoldContact() {
+  return (
+    <footer className="bo__contact" id="contact">
+      <div className="bo__contactInner container">
+        <div className="bo__contactGrid">
+          <h2 className="bo__h4">
+            Let’s make
+            <br />
+            something.
+          </h2>
+          <div className="bo__contactDetails">
+            <a href={`mailto:${contact.email}`}>{contact.email}</a>
+            <a href={contact.phoneHref}>{contact.phone}</a>
+            <span className="bo__muted">{contact.location}</span>
+          </div>
+        </div>
+
+        <div className="bo__contactFoot">
+          <span>Joel Loopez © {new Date().getFullYear()} · Kit Digital — Next Generation EU</span>
+          <span className="bo__contactLinks">
+            {social.map((item) => (
+              <a key={item.id} href={item.href}>
+                {item.label}
+              </a>
+            ))}
+            <Link to="/privacy">Privacy</Link>
+            <Link to="/legal">Legal</Link>
+          </span>
+        </div>
+      </div>
+    </footer>
+  )
+}
+
+/**
+ * A subview's opening: a red label and a light headline on the left, `aside`
+ * on the right. `lead` sits under the headline when the right side is taken.
+ */
+export function SubHero({ label, title, lead, aside }) {
+  return (
+    <div className="bo__subHero">
+      <div className="bo__subHeroMain">
+        <p className="bo__subLabel">
+          <span className="bo__subRule" aria-hidden="true" />
+          {label}
+        </p>
+        <h1 className="bo__subH1">{title}</h1>
+        {lead}
+      </div>
+      {aside && <div className="bo__subHeroAside">{aside}</div>}
+    </div>
+  )
+}
+
+/** A B subview: a slim red header band and the hero on black, then the page. */
+export function BoldSubpage({ hero, children }) {
+  return (
+    <div className="bo">
+      <div className="bo__top">
+        <div className="bo__subHead container">
+          <BoldHeader />
+        </div>
+      </div>
+      <div className="bo__subTop container">
+        {hero}
+      </div>
+      {children}
+    </div>
+  )
+}
+
 export function Bold() {
   const { items } = useTrackPlayer(tracks)
 
@@ -67,43 +177,28 @@ export function Bold() {
             &amp; film.
           </h1>
 
-          <div className="bo__topGrid">
-            <div className="bo__topText">
-              <p className="bo__lede">
-                Original soundtracks in any genre you need. Composed in Barcelona.
-              </p>
-              <div className="bo__clients">
-                <span className="bo__clientsLabel">Music for</span>
-                {clients.map((client) => (
-                  <span key={client}>{client}</span>
-                ))}
-              </div>
+          <div className="bo__topText">
+            <p className="bo__lede">
+              Original soundtracks in any genre you need. Composed in Barcelona.
+            </p>
+            <div className="bo__clients">
+              <span className="bo__clientsLabel">Music for</span>
+              {clients.map((client) => (
+                <img
+                  className="bo__clientLogo"
+                  key={client.name}
+                  src={client.logo}
+                  alt={client.name}
+                  style={{ '--logo-scale': client.scale ?? 1 }}
+                />
+              ))}
             </div>
-            <Placeholder
-              label={featuredWork.placeholder}
-              tone="light"
-              minHeight={320}
-              className="bo__topPh"
-            />
           </div>
         </div>
       </div>
 
       <div className="container" id="services">
-        <nav className="bo__paths" aria-label="What I do">
-          {services.map((service, i) => (
-            <a
-              className="bo__path"
-              key={service.num}
-              data-lead={i === 0 || undefined}
-              href={SERVICE_HREF[service.num]}
-            >
-              <span className="bo__pathKicker">{service.num}</span>
-              <span className="bo__pathTitle">{service.title} →</span>
-              <span className="bo__pathBody">{service.body}</span>
-            </a>
-          ))}
-        </nav>
+        <ServicePaths />
       </div>
 
       <section className="bo__music container" id="work">
@@ -195,35 +290,7 @@ export function Bold() {
         <img src={studioImage} alt="Joel Loopez in his studio" loading="lazy" />
       </section>
 
-      <footer className="bo__contact" id="contact">
-        <div className="bo__contactInner container">
-          <div className="bo__contactGrid">
-            <h2 className="bo__h4">
-              Let’s make
-              <br />
-              something.
-            </h2>
-            <div className="bo__contactDetails">
-              <a href={`mailto:${contact.email}`}>{contact.email}</a>
-              <span>{contact.phone}</span>
-              <span className="bo__muted">{contact.location}</span>
-            </div>
-          </div>
-
-          <div className="bo__contactFoot">
-            <span>Joel Loopez © {new Date().getFullYear()} · Kit Digital — Next Generation EU</span>
-            <span className="bo__contactLinks">
-              {social.map((item) => (
-                <a key={item.id} href={item.href}>
-                  {item.label}
-                </a>
-              ))}
-              <a href="#privacy">Privacy</a>
-              <a href="#legal">Legal</a>
-            </span>
-          </div>
-        </div>
-      </footer>
+      <BoldContact />
     </div>
   )
 }

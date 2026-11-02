@@ -1,0 +1,195 @@
+/* /the-studio — shares the music page's buttons and services block. */
+
+/* --- Photos --- */
+.st__wide {
+  aspect-ratio: 21 / 9;
+}
+
+.st__tall {
+  flex: 7 1 420px;
+  aspect-ratio: 4 / 5;
+}
+
+.st__wideWrap {
+  max-width: 1360px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+.st__photo {
+  padding-top: clamp(4.5rem, 9vw, 7rem);
+}
+
+/* --- The space --- */
+.st__space {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2.5rem var(--space-8);
+  padding-top: clamp(4.5rem, 9vw, 7rem);
+}
+
+.st__spaceLead {
+  display: flex;
+  flex: 1 1 420px;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.st__spaceLead .bo__eyebrow {
+  font-size: 15px;
+}
+
+.st__spaceQuote {
+  max-width: 14em;
+  font-size: clamp(1.875rem, 3.6vw, 2.875rem);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.st__spaceBody {
+  display: flex;
+  flex: 1 1 380px;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 520px;
+  padding-top: 2.75rem;
+  font-size: var(--text-base);
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+/* --- In the room --- */
+.st__room {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding-top: clamp(4.5rem, 9vw, 7rem);
+}
+
+.st__roomGrid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 2.5rem 3.5rem;
+}
+
+.st__roomText {
+  display: flex;
+  flex: 5 1 320px;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.st__roomLead {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  line-height: 1.45;
+}
+
+.st__gear,
+.st__points {
+  padding: 0;
+  border-top: 1px solid var(--border);
+  list-style: none;
+}
+
+.st__gear li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-1) var(--space-4);
+  padding-block: 1.125rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.st__gearName {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.st__gearDetail {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+/* --- Work with me --- */
+.st__offers {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  padding-top: clamp(4.5rem, 9vw, 7rem);
+}
+
+.st__offerGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.st__offer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: clamp(1.75rem, 3.5vw, 2.5rem);
+  border-radius: 10px;
+  background: var(--gray-3);
+  scroll-margin-top: var(--space-5);
+}
+
+.st__offerNum {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: var(--text-muted);
+}
+
+.st__offerHead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.st__offerTitle {
+  font-size: clamp(1.625rem, 2.8vw, 2.125rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.st__offerBody {
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.st__points li {
+  padding-block: 0.875rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 15px;
+}
+
+.st__offerFoot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+  margin-top: auto;
+}
+
+.st__note {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+@media (max-width: 860px) {
+  .st__offerGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .st__wide {
+    aspect-ratio: 4 / 3;
+  }
+}

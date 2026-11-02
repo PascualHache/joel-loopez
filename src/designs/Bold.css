@@ -1,4 +1,4 @@
-/* 1c Bold — the red band owns the top of the page and the type shouts. */
+/* B Fav (Bold) — the red band owns the top of the page and the type shouts. */
 .bo__top {
   background: var(--brand-red);
   color: #fff;
@@ -72,19 +72,15 @@
   letter-spacing: -0.05em;
 }
 
-.bo__topGrid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-7);
-  align-items: end;
-  margin-top: var(--space-7);
-}
-
+/* Set against the left-hung headline, the lede and clients hang right. */
 .bo__topText {
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
+  align-self: flex-end;
   gap: var(--space-5);
-  margin-bottom: var(--space-8);
+  margin-block: var(--space-7) var(--space-8);
+  text-align: right;
 }
 
 .bo__lede {
@@ -97,10 +93,15 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-3) var(--space-6);
-  font-size: var(--text-xl);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  justify-content: flex-end;
+  gap: var(--space-4) var(--space-6);
+}
+
+/* The logos arrive in mixed colours; on the red band they all read as white. */
+.bo__clientLogo {
+  width: auto;
+  height: calc(26px * var(--logo-scale, 1));
+  filter: brightness(0) invert(1);
 }
 
 .bo__clientsLabel {
@@ -110,21 +111,92 @@
   text-transform: uppercase;
 }
 
-.bo__topPh {
-  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-  border-bottom: none;
-}
-
-.bo__topImg {
-  width: 100%;
-  height: 360px;
-  object-fit: cover;
-  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-}
-
 /* --- Subviews --- */
 .bo__subHead {
-  padding-block: var(--space-5);
+  padding-block: var(--space-4);
+}
+
+.bo__subTop {
+  padding-bottom: clamp(3.5rem, 7vw, 5.5rem);
+}
+
+/* --- Subview hero --- */
+.bo__subHero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2.5rem var(--space-8);
+  padding-top: clamp(3.5rem, 8vw, 6.5rem);
+}
+
+.bo__subHeroMain {
+  display: flex;
+  flex: 1 1 480px;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.bo__subHeroAside {
+  display: flex;
+  flex: 1 1 320px;
+  flex-direction: column;
+  gap: 1.75rem;
+  max-width: 420px;
+}
+
+.bo__subLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--accent-text);
+}
+
+.bo__subRule {
+  flex: none;
+  width: 40px;
+  height: 1px;
+  background: currentColor;
+}
+
+.bo__subH1 {
+  max-width: 11em;
+  font-size: clamp(2.75rem, 6.4vw, 5.25rem);
+  font-weight: 300;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+}
+
+.bo__subLede {
+  max-width: 30em;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+.bo__subCtas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-5);
+}
+
+.bo__subCtas .bo__btnLight {
+  min-height: 48px;
+  padding-inline: 1.625rem;
+  font-size: 15px;
+}
+
+.bo__textLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 /* --- Paths: a service index that jumps to each offer --- */
@@ -546,15 +618,21 @@
 }
 
 @media (max-width: 860px) {
-  .bo__topGrid,
   .bo__studio,
   .bo__dance,
   .bo__contactGrid {
     grid-template-columns: 1fr;
   }
 
+  /* Too narrow to hang right: a ragged left edge reads better. */
   .bo__topText {
-    margin-bottom: 0;
+    align-items: flex-start;
+    align-self: stretch;
+    text-align: left;
+  }
+
+  .bo__clients {
+    justify-content: flex-start;
   }
 }
 

@@ -59,7 +59,7 @@ export function Turn3Page({ variant, theme, hero, lightLogo = false, placeholder
         <span className="t3__label">Music for</span>
         <ul>
           {clients.map((client) => (
-            <li key={client}>{client}</li>
+            <li key={client.name}>{client.name}</li>
           ))}
         </ul>
       </section>

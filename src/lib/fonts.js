@@ -20,13 +20,3 @@ const TURN3_FONTS =
 export function ensureTurn3Fonts() {
   ensureStylesheet('turn3-fonts', TURN3_FONTS)
 }
-
-/** Archivo needs its width axis: the dance page sets its display type extended. */
-const DANCE_FONTS =
-  'https://fonts.googleapis.com/css2?' +
-  'family=Archivo:wdth,wght@62..125,100..900&' +
-  'family=Space+Mono:wght@400;700&display=swap'
-
-export function ensureDanceFonts() {
-  ensureStylesheet('dance-fonts', DANCE_FONTS)
-}

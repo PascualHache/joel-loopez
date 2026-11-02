@@ -10,9 +10,9 @@
  */
 export const designs = [
   { id: 'current', label: 'Actual' },
-  { id: 'paths', label: '1b Chucho Samozas' },
-  { id: 'bold', label: '1c Wido Mayamé' },
-  { id: 'night', label: '3b Night Forest' },
+  { id: 'paths', label: 'A Directa' },
+  { id: 'bold', label: 'B Fav' },
+  { id: 'night', label: 'C Boscosa' },
 ]
 
 /**
@@ -33,8 +33,15 @@ export const turn3 = {
   },
 }
 
-/** Named clients carry more weight than platform logos, so they lead. */
-export const clients = ["Domino's", 'CANADA', 'ESLAND']
+/**
+ * Named clients carry more weight than platform logos, so they lead.
+ * `scale` evens out logos whose mark fills less of the image height.
+ */
+export const clients = [
+  { name: "Domino's", logo: '/assets/brands/dominos_logo.png' },
+  { name: 'CANADA', logo: '/assets/brands/canada_logo.png' },
+  { name: 'ESLAND', logo: '/assets/brands/esland_logo.png', scale: 1.35 },
+]
 
 /** Ordered by commercial priority, not by history. */
 export const services = [

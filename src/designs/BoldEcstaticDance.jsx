@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { agreements, bring, moods, signup, tempos, zones } from '../data/dance'
 import { DanceAudio } from '../lib/danceAudio'
-import { ensureDanceFonts } from '../lib/fonts'
-import { BoldHeader } from './Bold'
-import './Bold.css'
+import { BoldContact, BoldSubpage, ServicePaths, SubHero } from './Bold'
+import './BoldMusicService.css'
 import './BoldEcstaticDance.css'
 
 const AGREEMENT_NOTES = [523.25, 587.33, 659.25, 783.99, 880, 1046.5, 1174.66, 1318.51]
@@ -71,7 +70,7 @@ function Check() {
   )
 }
 
-/** 1c subview: accept the floor's agreements, then play the dance floor. */
+/** B subview: accept the floor's agreements, then play the dance floor. */
 export function BoldEcstaticDance() {
   const [ok, setOk] = useState(() => agreements.map(() => false))
   const [open, setOpen] = useState(false)
@@ -82,8 +81,6 @@ export function BoldEcstaticDance() {
   const audio = useRef(null)
   const openTimer = useRef(null)
   if (!audio.current) audio.current = new DanceAudio()
-
-  useEffect(ensureDanceFonts, [])
 
   useEffect(() => {
     const engine = audio.current
@@ -134,236 +131,241 @@ export function BoldEcstaticDance() {
   else if (awakeCount > 0)
     hint = `${awakeCount} de 5 partes del cuerpo bailando. Suma otra o sube el tempo y mira quién se une.`
 
+  const hero = (
+    <SubHero
+      label="Ecstatic Dance"
+      title={open ? 'La pista está abierta.' : 'Antes de entrar a la pista.'}
+      aside={
+        <>
+          <p className="bo__subLede">
+            {open
+              ? 'Aquí no hay pasos que aprender: la música entra por el cuerpo. Toca una parte y escucha. Cuanta más energía pongas, más gente se une a bailar contigo.'
+              : 'El Ecstatic Dance es un encuentro de baile libre de unas tres horas, centrado en lo que siente el cuerpo. Lo que permite soltarse son unos pocos acuerdos que todo el mundo comparte. Tócalos uno a uno para aceptarlos y abrir la pista.'}
+          </p>
+          <div className="ec__bring">
+            <span className="ec__bringLabel">Qué traer</span>
+            <span className="ec__chips">
+              {bring.map((item) => (
+                <span className="ec__chip" key={item}>
+                  {item}
+                </span>
+              ))}
+            </span>
+          </div>
+          <div className="bo__subCtas">
+            <a className="bo__btnLight" href={signup.href} target="_blank" rel="noreferrer">
+              {signup.label}
+            </a>
+            <span className="ec__next">{signup.next}</span>
+          </div>
+        </>
+      }
+    />
+  )
+
   return (
-    <div className="bo">
-      <div className="bo__top">
-        <div className="bo__subHead container">
-          <BoldHeader />
-        </div>
-      </div>
-
-      <main className="ec">
-        <div className="ec__inner">
-          <section className="ec__intro">
-            <div className="ec__introMain">
-              <p className="ec__eyebrow">
-                {open ? 'Ecstatic Dance · La pista' : 'Ecstatic Dance · Antes de entrar'}
-              </p>
-              <h1 className="ec__h1">
-                {open ? 'La pista' : 'Antes de entrar'}
-                <br />
-                {open ? 'está abierta' : 'a la pista'}
-              </h1>
-            </div>
-            <div className="ec__introAside">
-              <p className="ec__lede">
-                {open
-                  ? 'Aquí no hay pasos que aprender: la música entra por el cuerpo. Toca una parte y escucha. Cuanta más energía pongas, más gente se une a bailar contigo.'
-                  : 'El Ecstatic Dance es un encuentro de baile libre de unas tres horas, centrado en lo que siente el cuerpo. Lo que permite soltarse son unos pocos acuerdos que todo el mundo comparte. Tócalos uno a uno para aceptarlos y abrir la pista.'}
-              </p>
-              <div className="ec__bring">
-                <span className="ec__bringLabel">Qué traer</span>
-                {bring.map((item) => (
-                  <span className="ec__chip" key={item}>
-                    {item}
-                  </span>
+    <BoldSubpage hero={hero}>
+      <main className="ec container">
+      <div className="ec__stage">
+        {/* Once the floor opens the agreements fold into this summary line. */}
+        <div
+          className="ec__fold"
+          style={{
+            gridTemplateRows: open ? '1fr' : '0fr',
+            visibility: open ? 'visible' : 'hidden',
+            transition: `grid-template-rows 500ms ease ${showCards ? '0ms' : '450ms'}`,
+          }}
+        >
+          <div className="ec__foldInner">
+            <div className="ec__summary">
+              <span className="ec__check">
+                <Check />
+              </span>
+              <span className="ec__summaryText">{total} acuerdos aceptados</span>
+              <span className="ec__dots" aria-hidden="true">
+                {agreements.map((a) => (
+                  <span className="ec__dot" key={a.title} />
                 ))}
-              </div>
+              </span>
+              <button
+                type="button"
+                className="ec__summaryBtn"
+                aria-expanded={showCards}
+                onClick={() => setShowCards((v) => !v)}
+              >
+                {showCards ? 'Ocultar acuerdos' : 'Ver acuerdos'}
+              </button>
             </div>
-          </section>
+          </div>
+        </div>
 
-          <div className="ec__stage">
-            {/* Once the floor opens the agreements fold into this summary line. */}
-            <div
-              className="ec__fold"
-              style={{
-                gridTemplateRows: open ? '1fr' : '0fr',
-                visibility: open ? 'visible' : 'hidden',
-                transition: `grid-template-rows 500ms ease ${showCards ? '0ms' : '450ms'}`,
-              }}
-            >
-              <div className="ec__foldInner">
-                <div className="ec__summary">
-                  <span className="ec__check">
-                    <Check />
-                  </span>
-                  <span className="ec__summaryText">{total} acuerdos aceptados</span>
-                  <span className="ec__dots" aria-hidden="true">
-                    {agreements.map((a) => (
-                      <span className="ec__dot" key={a.title} />
-                    ))}
-                  </span>
+        <div
+          className="ec__fold"
+          style={{
+            gridTemplateRows: showCards ? '1fr' : '0fr',
+            visibility: showCards ? 'visible' : 'hidden',
+            transition: `grid-template-rows 650ms cubic-bezier(0.65, 0, 0.35, 1) ${collapsing ? '480ms' : '0ms'}, visibility 0s linear ${showCards ? '0ms' : '1200ms'}`,
+          }}
+        >
+          <div className="ec__foldInner">
+            <section className="ec__agreements" aria-labelledby="ec-agreements">
+              <h2 className="bo__h2" id="ec-agreements">
+                Los acuerdos.
+              </h2>
+              <div className="ec__progress">
+                <span className="ec__count" role="status">
+                  {count} de {total} acuerdos
+                </span>
+                <div className="ec__bar">
+                  <div className="ec__barFill" style={{ width: `${(count / total) * 100}%` }} />
+                </div>
+                <span className="ec__progressNote">
+                  {count === total ? 'La pista se abre…' : 'Cuando los aceptes todos, la pista se abre.'}
+                </span>
+              </div>
+
+              <div className="ec__cards">
+                {agreements.map((a, i) => (
                   <button
                     type="button"
-                    className="ec__summaryBtn"
-                    aria-expanded={showCards}
-                    onClick={() => setShowCards((v) => !v)}
+                    className="ec__card"
+                    key={a.title}
+                    aria-pressed={ok[i]}
+                    onClick={() => toggleAgreement(i)}
+                    style={{
+                      opacity: collapsing ? 0 : 1,
+                      transform: collapsing ? 'translateY(-28px) scale(0.9)' : 'none',
+                      '--ec-delay': collapsing ? `${i * 55}ms` : '0ms',
+                    }}
                   >
-                    {showCards ? 'Ocultar acuerdos' : 'Ver acuerdos'}
+                    <span className="ec__cardTop">
+                      <span className="ec__cardNum">{String(i + 1).padStart(2, '0')}</span>
+                      <span className="ec__cardIcon">{ok[i] && <Check />}</span>
+                    </span>
+                    <span className="ec__cardTitle">{a.title}</span>
+                    <span className="ec__cardDesc">{a.desc}</span>
+                    <span className="ec__cardLabel">{ok[i] ? 'Aceptado' : 'Toca para aceptar'}</span>
                   </button>
-                </div>
-              </div>
-            </div>
-
-            <div
-              className="ec__fold"
-              style={{
-                gridTemplateRows: showCards ? '1fr' : '0fr',
-                visibility: showCards ? 'visible' : 'hidden',
-                transition: `grid-template-rows 650ms cubic-bezier(0.65, 0, 0.35, 1) ${collapsing ? '480ms' : '0ms'}, visibility 0s linear ${showCards ? '0ms' : '1200ms'}`,
-              }}
-            >
-              <div className="ec__foldInner">
-                <section className="ec__agreements" aria-label="Acuerdos">
-                  <div className="ec__progress">
-                    <span className="ec__count" role="status">
-                      {count} de {total} acuerdos
-                    </span>
-                    <div className="ec__bar">
-                      <div className="ec__barFill" style={{ width: `${(count / total) * 100}%` }} />
-                    </div>
-                    <span className="ec__progressNote">
-                      {count === total ? 'La pista se abre…' : 'Cuando los aceptes todos, la pista se abre.'}
-                    </span>
-                  </div>
-
-                  <div className="ec__cards">
-                    {agreements.map((a, i) => (
-                      <button
-                        type="button"
-                        className="ec__card"
-                        key={a.title}
-                        aria-pressed={ok[i]}
-                        onClick={() => toggleAgreement(i)}
-                        style={{
-                          opacity: collapsing ? 0 : 1,
-                          transform: collapsing ? 'translateY(-28px) scale(0.9)' : 'none',
-                          '--ec-delay': collapsing ? `${i * 55}ms` : '0ms',
-                        }}
-                      >
-                        <span className="ec__cardTop">
-                          <span className="ec__cardNum">{String(i + 1).padStart(2, '0')}</span>
-                          <span className="ec__cardIcon">{ok[i] && <Check />}</span>
-                        </span>
-                        <span className="ec__cardTitle">{a.title}</span>
-                        <span className="ec__cardDesc">{a.desc}</span>
-                        <span className="ec__cardLabel">{ok[i] ? 'Aceptado' : 'Toca para aceptar'}</span>
-                      </button>
-                    ))}
-                  </div>
-                </section>
-              </div>
-            </div>
-
-            <section
-              className="ec__fold ec__floorFold"
-              aria-label="La pista"
-              style={{
-                gridTemplateRows: open ? '1fr' : '0fr',
-                visibility: open ? 'visible' : 'hidden',
-              }}
-            >
-              <div className="ec__foldInner">
-                <div
-                  className="ec__floorWrap"
-                  style={{
-                    opacity: open ? 1 : 0,
-                    transform: open ? 'none' : 'translateY(32px)',
-                  }}
-                >
-                  <div className="ec__floor">
-                    <div className="ec__crowd" aria-hidden="true">
-                      {CROWD.map((d, i) => {
-                        const active = d.rank < dancing
-                        const late = bucket > 1 && d.rank >= dancing * 0.65
-                        const color = active ? colorAt(energy + d.hue) : '#1F1F23'
-                        return (
-                          <div
-                            className="ec__dancer"
-                            key={i}
-                            style={{
-                              left: `${d.left.toFixed(2)}%`,
-                              bottom: d.bottom,
-                              gap: d.gap,
-                              opacity: active ? d.op : (d.op * 0.7).toFixed(2),
-                              animation: active
-                                ? `ecDance${late ? bucket - 1 : bucket} ${beat}s ease-in-out ${(-d.phase * beat).toFixed(3)}s infinite alternate`
-                                : `ecIdle 3.2s ease-in-out ${(-d.phase * 3.2).toFixed(2)}s infinite alternate`,
-                            }}
-                          >
-                            <div
-                              className="ec__dancerPart"
-                              style={{ width: d.head, height: d.head, background: color }}
-                            />
-                            <div
-                              className="ec__dancerPart"
-                              style={{
-                                width: d.w,
-                                height: d.h,
-                                background: color,
-                                boxShadow: `0 0 ${active ? Math.round(energy * energy * 18) : 0}px ${color}`,
-                              }}
-                            />
-                          </div>
-                        )
-                      })}
-                    </div>
-
-                    <span className="ec__mood">La pista · {moods[bucket]}</span>
-                    <div className="ec__meter">
-                      <span className="ec__meterText">
-                        {dancing} de {CROWD.length} bailando
-                      </span>
-                      <div className="ec__meterBar">
-                        <div
-                          className="ec__meterFill"
-                          style={{ width: `${Math.round(energy * 100)}%`, background: colorAt(energy) }}
-                        />
-                      </div>
-                    </div>
-
-                    <Figure awake={awake} beat={beat} onToggle={toggleZone} />
-                  </div>
-
-                  <div className="ec__controls">
-                    <div className="ec__tempos">
-                      <span className="ec__tempoLabel">Tempo</span>
-                      {tempos.map((t, i) => (
-                        <button
-                          type="button"
-                          className="ec__pill"
-                          key={t.label}
-                          aria-pressed={i === tempo}
-                          onClick={() => setTempo(i)}
-                        >
-                          {t.label} <span className="ec__bpm">{t.bpm} BPM</span>
-                        </button>
-                      ))}
-                    </div>
-                    <p className="ec__hint" role="status">
-                      {hint}
-                    </p>
-                    <button type="button" className="ec__pill" onClick={() => setAwake(ALL_ASLEEP)}>
-                      Silencio total
-                    </button>
-                  </div>
-                </div>
+                ))}
               </div>
             </section>
           </div>
-
-          <footer className="ec__footer">
-            <span>{signup.next}</span>
-            <span className="ec__footerLinks">
-              <span>Mejor con auriculares</span>
-              <a href={signup.href} target="_blank" rel="noreferrer">
-                {signup.label}
-              </a>
-            </span>
-          </footer>
         </div>
+
+        <section
+          className="ec__fold ec__floorFold"
+          aria-labelledby="ec-floor"
+          style={{
+            gridTemplateRows: open ? '1fr' : '0fr',
+            visibility: open ? 'visible' : 'hidden',
+          }}
+        >
+          <div className="ec__foldInner">
+            <div
+              className="ec__floorWrap"
+              style={{
+                opacity: open ? 1 : 0,
+                transform: open ? 'none' : 'translateY(32px)',
+              }}
+            >
+              <div className="ec__head">
+                <h2 className="bo__h2" id="ec-floor">
+                  La pista.
+                </h2>
+                <p className="ec__note">Mejor con auriculares.</p>
+              </div>
+
+              <div className="ec__floor">
+                <div className="ec__crowd" aria-hidden="true">
+                  {CROWD.map((d, i) => {
+                    const active = d.rank < dancing
+                    const late = bucket > 1 && d.rank >= dancing * 0.65
+                    const color = active ? colorAt(energy + d.hue) : '#1F1F23'
+                    return (
+                      <div
+                        className="ec__dancer"
+                        key={i}
+                        style={{
+                          left: `${d.left.toFixed(2)}%`,
+                          bottom: d.bottom,
+                          gap: d.gap,
+                          opacity: active ? d.op : (d.op * 0.7).toFixed(2),
+                          animation: active
+                            ? `ecDance${late ? bucket - 1 : bucket} ${beat}s ease-in-out ${(-d.phase * beat).toFixed(3)}s infinite alternate`
+                            : `ecIdle 3.2s ease-in-out ${(-d.phase * 3.2).toFixed(2)}s infinite alternate`,
+                        }}
+                      >
+                        <div
+                          className="ec__dancerPart"
+                          style={{ width: d.head, height: d.head, background: color }}
+                        />
+                        <div
+                          className="ec__dancerPart"
+                          style={{
+                            width: d.w,
+                            height: d.h,
+                            background: color,
+                            boxShadow: `0 0 ${active ? Math.round(energy * energy * 18) : 0}px ${color}`,
+                          }}
+                        />
+                      </div>
+                    )
+                  })}
+                </div>
+
+                <span className="ec__mood">La pista · {moods[bucket]}</span>
+                <div className="ec__meter">
+                  <span className="ec__meterText">
+                    {dancing} de {CROWD.length} bailando
+                  </span>
+                  <div className="ec__meterBar">
+                    <div
+                      className="ec__meterFill"
+                      style={{ width: `${Math.round(energy * 100)}%`, background: colorAt(energy) }}
+                    />
+                  </div>
+                </div>
+
+                <Figure awake={awake} beat={beat} onToggle={toggleZone} />
+              </div>
+
+              <div className="ec__controls">
+                <div className="ec__tempos">
+                  <span className="ec__tempoLabel">Tempo</span>
+                  {tempos.map((t, i) => (
+                    <button
+                      type="button"
+                      className="ec__pill"
+                      key={t.label}
+                      aria-pressed={i === tempo}
+                      onClick={() => setTempo(i)}
+                    >
+                      {t.label} <span className="ec__bpm">{t.bpm} BPM</span>
+                    </button>
+                  ))}
+                </div>
+                <p className="ec__hint" role="status">
+                  {hint}
+                </p>
+                <button type="button" className="ec__pill" onClick={() => setAwake(ALL_ASLEEP)}>
+                  Silencio total
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
       </main>
-    </div>
+
+      <section className="ms__services container" aria-labelledby="ec-services">
+        <h2 className="bo__h2" id="ec-services">
+          Services.
+        </h2>
+        <ServicePaths />
+      </section>
+
+      <BoldContact />
+    </BoldSubpage>
   )
 }
 
