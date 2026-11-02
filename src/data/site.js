@@ -48,10 +48,10 @@ export const contact = {
 }
 
 export const social = [
-  { id: 'spotify', label: 'Spotify', href: 'https://open.spotify.com' },
-  { id: 'instagram', label: 'Instagram', href: 'https://instagram.com' },
-  { id: 'soundcloud', label: 'SoundCloud', href: 'https://soundcloud.com' },
-  { id: 'youtube', label: 'YouTube', href: 'https://youtube.com' },
+  { id: 'spotify', label: 'Spotify', href: 'https://open.spotify.com/artist/3l7zH3g5Z7QnHAiIYKZu6u' },
+  { id: 'instagram', label: 'Instagram', href: 'https://www.instagram.com/joel__loopez/' },
+  { id: 'soundcloud', label: 'SoundCloud', href: 'https://soundcloud.com/joelloopez' },
+  { id: 'youtube', label: 'YouTube', href: 'https://www.youtube.com/@joelloopez1550' },
   { id: 'blog', label: 'Blog', href: '#blog' },
 ]
 

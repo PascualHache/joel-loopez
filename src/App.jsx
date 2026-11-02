@@ -6,6 +6,11 @@ import { Current } from './designs/Current'
 import { Paths } from './designs/Paths'
 import { Bold } from './designs/Bold'
 import { BoldEcstaticDance } from './designs/BoldEcstaticDance'
+import { BoldMusicService } from './designs/BoldMusicService'
+import { BoldStudio } from './designs/BoldStudio'
+import { BoldLicensing } from './designs/BoldLicensing'
+import { BoldLegal } from './designs/BoldLegal'
+import { legalNotice, privacyPolicy } from './data/legal'
 import { NightForest } from './designs/turn3/NightForest'
 
 const PAGES = {
@@ -37,7 +42,7 @@ function useScrollOnNavigate() {
   useEffect(() => {
     const target = hash && document.getElementById(hash.slice(1))
     if (target) target.scrollIntoView()
-    else window.scrollTo({ top: 0, behavior: 'auto' })
+    else window.scrollTo({ top: 0, behavior: 'instant' })
   }, [pathname, hash])
 }
 
@@ -57,7 +62,7 @@ export default function App() {
   function choose(next) {
     setDesign(next)
     navigate('/')
-    window.scrollTo({ top: 0, behavior: 'auto' })
+    window.scrollTo({ top: 0, behavior: 'instant' })
   }
 
   const Page = PAGES[design] ?? Current
@@ -66,8 +71,13 @@ export default function App() {
     <>
       <Routes>
         <Route path="/" element={<Page />} />
-        {/* 1c subviews: the top nav lists only these; the home scrolls by anchors. */}
+        {/* B subviews: the top nav lists only these; the home scrolls by anchors. */}
+        <Route path="/music-service" element={<BoldMusicService />} />
+        <Route path="/the-studio" element={<BoldStudio />} />
+        <Route path="/licensing" element={<BoldLicensing />} />
         <Route path="/ecstatic-dance" element={<BoldEcstaticDance />} />
+        <Route path="/privacy" element={<BoldLegal doc={privacyPolicy} />} />
+        <Route path="/legal" element={<BoldLegal doc={legalNotice} />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <DesignSwitcher value={design} onChange={choose} />

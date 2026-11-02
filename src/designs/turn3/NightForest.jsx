@@ -3,7 +3,7 @@ import { Placeholder } from '../../components/Placeholder'
 import { Turn3Page } from './Turn3Page'
 import './night.css'
 
-/** 3b — dark, warm, intimate. Centred hero, firelight amber as the only accent. */
+/** C Boscosa — dark, warm, intimate. Centred hero, firelight amber as the only accent. */
 export function NightForest() {
   const t = turn3.night
 

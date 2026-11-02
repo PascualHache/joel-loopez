@@ -1,0 +1,48 @@
+/* /privacy and /legal — readable prose on black, one column. */
+.lg {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding-block: var(--space-4) clamp(4.5rem, 10vw, var(--space-10));
+}
+
+.lg__section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: var(--space-4) var(--space-8);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border);
+}
+
+.lg__heading {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.lg__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 40em;
+  font-size: var(--text-base);
+  line-height: 1.75;
+  color: var(--text-muted);
+}
+
+.lg__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-left: 1.25rem;
+}
+
+.lg__list li::marker {
+  color: var(--accent-text);
+}
+
+@media (max-width: 760px) {
+  .lg__section {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
