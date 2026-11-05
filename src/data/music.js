@@ -1,8 +1,8 @@
-/** The /music-service subview: custom music for brands, games, film and events. */
-export const musicService = {
-  label: 'Custom Music',
+/** The /music subview: custom music for brands, games, film and events, and the licensing catalog. */
+export const music = {
+  label: 'Music',
   title: 'Scored from scratch.',
-  body: 'Original scores and music supervision for ads, games, film and events. Any genre, composed and produced in my studio in Barcelona.',
+  body: 'Original scores and music supervision for ads, games, film and events, composed in my studio in Barcelona — or 300+ ready-made tracks and packs to license today.',
   brands: ['Netflix', 'Domino’s', 'Rip Curl', 'Cepsa', 'Nestea', 'CANADA', 'ESLAND'],
   facts: [
     ['The ', 'ESLAND', ' soundtrack won the SAE Alumni Award for Audio in 2022.'],

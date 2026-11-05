@@ -1,4 +1,4 @@
-/** The /licensing subview: ready-made music and SFX packs, plus the catalog on other libraries. */
+/** Licensing, part of /music: ready-made music and SFX packs, plus the catalog on other libraries. */
 const SHOP = 'https://zoidberg-es.itch.io/'
 const euro = (price) => `${price} €`
 

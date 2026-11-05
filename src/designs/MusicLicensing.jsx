@@ -1,7 +1,5 @@
 import { libraries, licensing as t, musicPacks, packFeatures, sfxPacks } from '../data/licensing'
-import { BoldContact, BoldSubpage, ServicePaths, SubHero } from './Bold'
-import './BoldMusicService.css'
-import './BoldLicensing.css'
+import './MusicLicensing.css'
 
 /** Diagonal "opens elsewhere" arrow; it nudges up-right on hover. */
 function External({ size = 14 }) {
@@ -33,52 +31,58 @@ function Pack({ pack }) {
   )
 }
 
-/** B subview: packs to buy today, and where else the 300+ track catalog lives. */
-export function BoldLicensing() {
+/**
+ * The licensing half of /music: the bundle offer, the packs to buy today, and
+ * where else the 300+ track catalog lives.
+ */
+export function MusicLicensing() {
   const b = t.bundle
 
-  const hero = (
-    <SubHero
-      label={t.label}
-      title={t.title}
-      lead={
-        <>
-          <p className="bo__subLede">{t.body}</p>
-          <div className="bo__subCtas">
-            <a className="bo__btnLight" href="#packs">
-              Browse the packs
-            </a>
-            <a className="bo__textLink" href="#platforms">
-              300+ tracks on other platforms
-            </a>
-          </div>
-        </>
-      }
-      aside={
-        <article className="lc__bundle" aria-labelledby="lc-bundle">
-          <div className="lc__bundleHead">
-            <p className="lc__bundleKicker">{b.kicker}</p>
-            <h2 className="lc__bundleTitle" id="lc-bundle">
-              {b.title}
-            </h2>
-            <p className="lc__bundleBody">{b.body}</p>
-          </div>
-          <div className="lc__bundlePrice">
-            <span className="lc__bundleNow">{b.price}</span>
-            <span className="lc__bundleWas">
-              <s>{b.was}</s> bought separately
-            </span>
-          </div>
-          <a className="lc__bundleCta" href={b.href} target="_blank" rel="noreferrer">
-            {b.cta} <External />
-          </a>
-        </article>
-      }
-    />
-  )
-
   return (
-    <BoldSubpage hero={hero}>
+    <>
+      <section className="lc__intro container" id="licensing" aria-labelledby="lc-licensing">
+        <div className="bo__subHero">
+          <div className="bo__subHeroMain">
+            <p className="bo__subLabel">
+              <span className="bo__subRule" aria-hidden="true" />
+              {t.label}
+            </p>
+            <h2 className="bo__h2" id="lc-licensing">
+              {t.title}
+            </h2>
+            <p className="bo__subLede">{t.body}</p>
+            <div className="bo__subCtas">
+              <a className="bo__btnLight" href="#packs">
+                Browse the packs
+              </a>
+              <a className="bo__textLink" href="#platforms">
+                300+ tracks on other platforms
+              </a>
+            </div>
+          </div>
+          <div className="bo__subHeroAside">
+            <article className="lc__bundle" aria-labelledby="lc-bundle">
+              <div className="lc__bundleHead">
+                <p className="lc__bundleKicker">{b.kicker}</p>
+                <h3 className="lc__bundleTitle" id="lc-bundle">
+                  {b.title}
+                </h3>
+                <p className="lc__bundleBody">{b.body}</p>
+              </div>
+              <div className="lc__bundlePrice">
+                <span className="lc__bundleNow">{b.price}</span>
+                <span className="lc__bundleWas">
+                  <s>{b.was}</s> bought separately
+                </span>
+              </div>
+              <a className="lc__bundleCta" href={b.href} target="_blank" rel="noreferrer">
+                {b.cta} <External />
+              </a>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section className="lc__section container" id="packs" aria-labelledby="lc-packs">
         <div className="lc__head">
           <h2 className="bo__h2" id="lc-packs">
@@ -138,15 +142,6 @@ export function BoldLicensing() {
           ))}
         </nav>
       </section>
-
-      <section className="ms__services container" aria-labelledby="lc-services">
-        <h2 className="bo__h2" id="lc-services">
-          Services.
-        </h2>
-        <ServicePaths />
-      </section>
-
-      <BoldContact />
-    </BoldSubpage>
+    </>
   )
 }
