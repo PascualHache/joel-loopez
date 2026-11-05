@@ -200,10 +200,14 @@
 }
 
 /* --- Paths: a service index that jumps to each offer --- */
+.bo__services {
+  padding-bottom: var(--space-9);
+}
+
 /* 1px gaps over a lighter ground give the grid its hairlines. */
 .bo__paths {
   display: grid;
-  grid-template-columns: 1.6fr repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   margin-top: var(--space-9);
   background: var(--gray-6);
@@ -268,22 +272,7 @@
   letter-spacing: -0.02em;
 }
 
-/* --- Track tiles --- */
-.bo__music {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-7);
-  padding-block: var(--space-9);
-}
-
-.bo__musicHead {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: end;
-  justify-content: space-between;
-  gap: var(--space-4);
-}
-
+/* --- Section headings and buttons --- */
 .bo__h2 {
   font-size: clamp(2rem, 4vw, 3.5rem);
   font-weight: 300;
@@ -305,103 +294,6 @@
 .bo__btn:hover {
   background: var(--accent-10);
   color: var(--accent-contrast);
-}
-
-.bo__tiles {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-4);
-}
-
-.bo__tile {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: var(--space-4);
-  aspect-ratio: 1;
-  padding: var(--space-5);
-  border-radius: var(--radius-lg);
-  background: var(--gray-3);
-  text-align: left;
-  transition: background var(--transition), transform var(--transition);
-}
-
-.bo__tile:hover {
-  transform: translateY(-3px);
-}
-
-.bo__tile[data-playing] {
-  background: var(--brand-red);
-}
-
-.bo__tileTop {
-  display: flex;
-  align-items: start;
-  justify-content: space-between;
-  gap: var(--space-3);
-}
-
-.bo__tileNum {
-  font-size: clamp(2rem, 3.5vw, 3.5rem);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  color: var(--gray-8);
-}
-
-.bo__tile[data-playing] .bo__tileNum {
-  color: #fff;
-}
-
-.bo__tileBtn {
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-full);
-  background: #fff;
-  color: #000;
-}
-
-.bo__tile[data-playing] .bo__tileBtn {
-  color: var(--brand-red);
-}
-
-.bo__bars {
-  display: flex;
-  gap: 3px;
-}
-
-.bo__bars::before,
-.bo__bars::after {
-  content: '';
-  width: 3px;
-  height: 12px;
-  background: currentColor;
-}
-
-.bo__tileMeta {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
-}
-
-.bo__tileTitle {
-  font-size: 17px;
-  font-weight: 600;
-  line-height: 1.3;
-  color: #fff;
-}
-
-.bo__tileArtist {
-  font-size: var(--text-xs);
-  color: var(--text-muted);
-}
-
-.bo__tile[data-playing] .bo__tileArtist {
-  color: #fff;
 }
 
 /* --- Ecstatic Dance --- */
@@ -597,21 +489,7 @@
   opacity: 0.75;
 }
 
-@media (max-width: 1100px) {
-  .bo__paths {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .bo__path[data-lead] {
-    grid-column: 1 / -1;
-  }
-}
-
 @media (max-width: 1000px) {
-  .bo__tiles {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .bo__quotes {
     grid-template-columns: 1fr;
   }
@@ -636,7 +514,7 @@
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 860px) {
   .bo__paths {
     grid-template-columns: 1fr;
   }

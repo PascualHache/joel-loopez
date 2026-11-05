@@ -1,37 +1,16 @@
 /**
  * The design directions the floating switcher offers, rebuilt on the Turn 2
- * content structure: hero and CTAs → clients → services by priority →
+ * content structure: hero and CTAs → clients → subviews by priority →
  * selected work → Ecstatic Dance → testimonials → studio → licensing & packs
  * → about → contact.
  *
  * - current:   the shipped site
- * - paths:     routes each visitor type to its own path
  * - bold:      red leads, giant type, music up front
  */
 export const designs = [
   { id: 'current', label: 'Actual' },
-  { id: 'paths', label: 'A Directa' },
   { id: 'bold', label: 'B Fav' },
-  { id: 'night', label: 'C Boscosa' },
 ]
-
-/**
- * Turn 3 — visual identities that drop the black-and-red brand and keep
- * red only inside the logo. Shared Gestalt framing: figure and ground (room to
- * breathe, one thing in focus), here and now (unhurried, no aggressive CTAs),
- * and contact (first person, inviting).
- */
-export const turn3 = {
-  nav: ['Work', 'Services', 'Ecstatic Dance', 'Studio'],
-  navCta: 'Get in touch',
-  cta: 'Start a conversation',
-  night: {
-    eyebrow: 'Composer · Producer · DJ',
-    title: ['Sound for what ', 'moves', ' you.'],
-    body: 'Original music for brands, games and film, and ecstatic dance journeys — from a studio in the woods of La Floresta.',
-    placeholder: 'Photo — forest / dance at dusk',
-  },
-}
 
 /**
  * Named clients carry more weight than platform logos, so they lead.
@@ -43,63 +22,30 @@ export const clients = [
   { name: 'ESLAND', logo: '/assets/brands/esland_logo.png', scale: 1.35 },
 ]
 
-/** Ordered by commercial priority, not by history. */
+/** The three subviews, in commercial priority. Each one gathers the services listed in `includes`. */
 export const services = [
   {
     num: '01',
-    title: 'Custom Music',
-    body: 'Original scores and music supervision for ads, games, film and events.',
-    cta: 'Start a project →',
-    kicker: '01 · Brands · Games · Film · Events',
-    cardTitle: 'Custom Music & Supervision',
-    cardBody: 'Original scores in any genre, written for your story.',
+    title: 'Music',
+    to: '/music',
+    includes: 'Custom music · Licensing',
+    body: 'Original scores for ads, games, film and events — or 300+ ready-made tracks and packs to license today.',
   },
   {
     num: '02',
-    title: 'Production for Artists',
-    body: 'Bring your song to life in my studio in La Floresta, or remotely.',
-    kicker: '02 · Artists',
-    cardTitle: 'Music Production',
-    cardBody: 'In my La Floresta studio or remotely.',
+    title: 'The Studio',
+    to: '/the-studio',
+    includes: 'Production · Mentorship',
+    body: 'Bring your song to life in my studio in La Floresta, or grow a professional career in music.',
   },
   {
     num: '03',
-    title: 'Mentorship',
-    body: 'For composers and producers building a professional career.',
-    kicker: '03 · Composers',
-    cardTitle: 'Mentorship',
-    cardBody: 'Build a professional career in music.',
-  },
-  {
-    num: '04',
-    title: 'Licensing',
-    body: '300+ ready-to-use tracks and sound packs on the platforms you already use.',
-    kicker: '04 · Licensing',
-    cardTitle: '300+ tracks & packs',
-    cardBody: 'On AudioJungle, Pond5, MotionArray, Unity, Unreal and more.',
-  },
-  {
-    num: '05',
-    title: 'Ecstatic Dance DJ',
-    body: 'Live sets for conscious dance gatherings, retreats and festivals.',
+    title: 'Ecstatic Dance',
+    to: '/ecstatic-dance',
+    includes: 'DJ sets',
+    body: 'Live DJ journeys for conscious dance gatherings, retreats and festivals.',
   },
 ]
-
-/** 2b asks the visitor who they are; the first option is the lead offer. */
-export const paths = [
-  { kicker: 'Brands, games & film', title: 'Commission original music', href: '#work', lead: true },
-  { kicker: 'Artists', title: 'Produce my song', href: '#studio' },
-  { kicker: 'Composers', title: 'Get mentorship', href: '#studio' },
-  { kicker: 'Need a track now', title: 'License music', href: '#licensing' },
-  { kicker: 'Event organisers', title: 'Book an ecstatic dance DJ', href: '#ecstatic-dance' },
-]
-
-export const featuredWork = {
-  kicker: 'Advertising',
-  title: "Domino's Pizza",
-  body: 'Original music for the campaign spot.',
-  placeholder: "Domino's Pizza spot — Vimeo embed",
-}
 
 export const ecstaticDance = {
   kicker: 'Ecstatic Dance',
@@ -127,21 +73,8 @@ export const quotes = [
   },
 ]
 
-export const packs = [
-  { name: 'Fantasy Orchestral', where: 'AudioJungle' },
-  { name: '8-Bit Chiptune', where: 'AudioJungle' },
-  { name: 'Acoustic Guitar', where: 'AudioJungle' },
-]
-
 export const about = {
-  editorial:
-    "I'm Joel López, a composer and producer based in Barcelona. I've written music for Domino's, CANADA and ESLAND — and what matters most to me is the human connection behind every project.",
-  paths:
-    "I'm Joel López, a composer and producer in Barcelona. Tell me about your project — I usually reply within a couple of days.",
   bold: "From my studio in La Floresta, surrounded by nature, I write for brands, games and artists. What matters most to me is the human connection — you're warmly invited to visit, no pressure, no commitment.",
 }
-
-export const consoleImage =
-  'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&fit=crop&w=1600&q=80'
 
 export const studioImage = '/assets/home/img-joelloopez-new-section.jpg'

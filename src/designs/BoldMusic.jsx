@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
-import { musicService as t, works } from '../data/music'
+import { music as t, works } from '../data/music'
 import { PlayIcon } from '../components/Icons'
 import { BoldContact, BoldSubpage, ServicePaths, SubHero } from './Bold'
-import './BoldMusicService.css'
+import { MusicLicensing } from './MusicLicensing'
+import './BoldMusic.css'
 
 const playerSrc = (work) =>
   `https://player.vimeo.com/video/${work.id}?h=${work.hash}&autoplay=1&title=0&byline=0&portrait=0&dnt=1`
 
-/** B subview: custom music — who it's for, the work to watch, then the other services. */
-export function BoldMusicService() {
+/** B subview: music — custom work to watch first, then everything ready to license. */
+export function BoldMusic() {
   const [active, setActive] = useState(null)
   const dialog = useRef(null)
 
@@ -30,8 +31,8 @@ export function BoldMusicService() {
             <a className="bo__btnLight" href="#contact">
               Start a project
             </a>
-            <a className="bo__textLink" href="#work">
-              Watch the work
+            <a className="bo__textLink" href="#licensing">
+              License music
             </a>
           </div>
         </>
@@ -106,6 +107,8 @@ export function BoldMusicService() {
           ))}
         </div>
       </section>
+
+      <MusicLicensing />
 
       <section className="ms__services container" aria-labelledby="ms-services">
         <h2 className="bo__h2" id="ms-services">

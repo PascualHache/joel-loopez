@@ -3,21 +3,16 @@ import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-
 import { DesignSwitcher } from './components/DesignSwitcher'
 import { designs } from './data/designs'
 import { Current } from './designs/Current'
-import { Paths } from './designs/Paths'
 import { Bold } from './designs/Bold'
 import { BoldEcstaticDance } from './designs/BoldEcstaticDance'
-import { BoldMusicService } from './designs/BoldMusicService'
+import { BoldMusic } from './designs/BoldMusic'
 import { BoldStudio } from './designs/BoldStudio'
-import { BoldLicensing } from './designs/BoldLicensing'
 import { BoldLegal } from './designs/BoldLegal'
 import { legalNotice, privacyPolicy } from './data/legal'
-import { NightForest } from './designs/turn3/NightForest'
 
 const PAGES = {
   current: Current,
-  paths: Paths,
   bold: Bold,
-  night: NightForest,
 }
 
 const STORAGE_KEY = 'joel-loopez:design'
@@ -72,9 +67,11 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Page />} />
         {/* B subviews: the top nav lists only these; the home scrolls by anchors. */}
-        <Route path="/music-service" element={<BoldMusicService />} />
+        <Route path="/music" element={<BoldMusic />} />
         <Route path="/the-studio" element={<BoldStudio />} />
-        <Route path="/licensing" element={<BoldLicensing />} />
+        {/* Earlier URLs, now part of /music. */}
+        <Route path="/music-service" element={<Navigate to="/music" replace />} />
+        <Route path="/licensing" element={<Navigate to="/music#licensing" replace />} />
         <Route path="/ecstatic-dance" element={<BoldEcstaticDance />} />
         <Route path="/privacy" element={<BoldLegal doc={privacyPolicy} />} />
         <Route path="/legal" element={<BoldLegal doc={legalNotice} />} />

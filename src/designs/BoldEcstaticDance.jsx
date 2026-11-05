@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { agreements, bring, moods, signup, tempos, zones } from '../data/dance'
 import { DanceAudio } from '../lib/danceAudio'
 import { BoldContact, BoldSubpage, ServicePaths, SubHero } from './Bold'
-import './BoldMusicService.css'
+import './BoldMusic.css'
 import './BoldEcstaticDance.css'
 
 const AGREEMENT_NOTES = [523.25, 587.33, 659.25, 783.99, 880, 1046.5, 1174.66, 1318.51]

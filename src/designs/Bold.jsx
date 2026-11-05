@@ -8,29 +8,17 @@ import {
 } from '../data/designs'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { contact, social } from '../data/site'
-import { tracks } from '../data/tracks'
-import { useTrackPlayer } from '../hooks/useTrackPlayer'
 import { Logo } from '../components/Logo'
-import { PlayIcon } from '../components/Icons'
 import { Placeholder } from '../components/Placeholder'
 import './Bold.css'
 
 /** The top nav lists subviews only; moving around the home is done with anchors. */
 const NAV = [
-  { label: 'Music', to: '/music-service' },
+  { label: 'Home', to: '/' },
+  { label: 'Music', to: '/music' },
   { label: 'The Studio', to: '/the-studio' },
-  { label: 'Licensing', to: '/licensing' },
   { label: 'Ecstatic Dance', to: '/ecstatic-dance' },
 ]
-
-/** Each service opens its subview; production and mentorship share the studio, each at its own card. */
-const SERVICE_ROUTE = {
-  '01': '/music-service',
-  '02': '/the-studio#production',
-  '03': '/the-studio#mentorship',
-  '04': '/licensing',
-  '05': '/ecstatic-dance',
-}
 
 /** Shared by the home and every B subview. */
 export function BoldHeader() {
@@ -41,7 +29,7 @@ export function BoldHeader() {
       </Link>
       <nav className="bo__nav" aria-label="Primary">
         {NAV.map((item) => (
-          <NavLink key={item.to} to={item.to}>
+          <NavLink key={item.to} to={item.to} end>
             {item.label}
           </NavLink>
         ))}
@@ -55,20 +43,17 @@ export function BoldHeader() {
 }
 
 /**
- * The service index. On the home it leads with the first service; on a
- * subview it leads with — and marks as current — the service you are on.
+ * The index of the three subviews. On the home it leads with Music; on a
+ * subview it leads with — and marks as current — the one you are on.
  */
-const pathOf = (to) => to.split('#')[0]
-
 export function ServicePaths() {
   const { pathname } = useLocation()
-  const here = Object.values(SERVICE_ROUTE).some((to) => pathOf(to) === pathname)
+  const here = services.some((service) => service.to === pathname)
 
   return (
     <nav className="bo__paths" aria-label="What I do">
       {services.map((service, i) => {
-        const to = SERVICE_ROUTE[service.num]
-        const current = pathOf(to) === pathname
+        const current = service.to === pathname
         const lead = here ? current : i === 0
         return (
           <Link
@@ -76,9 +61,11 @@ export function ServicePaths() {
             key={service.num}
             data-lead={lead || undefined}
             aria-current={current ? 'page' : undefined}
-            to={to}
+            to={service.to}
           >
-            <span className="bo__pathKicker">{service.num}</span>
+            <span className="bo__pathKicker">
+              {service.num} · {service.includes}
+            </span>
             <span className="bo__pathTitle">{service.title} →</span>
             <span className="bo__pathBody">{service.body}</span>
           </Link>
@@ -161,8 +148,6 @@ export function BoldSubpage({ hero, children }) {
 }
 
 export function Bold() {
-  const { items } = useTrackPlayer(tracks)
-
   return (
     <div className="bo">
       <div className="bo__top" id="top">
@@ -197,50 +182,13 @@ export function Bold() {
         </div>
       </div>
 
-      <div className="container" id="services">
+      <div className="bo__services container" id="services">
         <ServicePaths />
       </div>
 
-      <section className="bo__music container" id="work">
-        <div className="bo__musicHead">
-          <h2 className="bo__h2">Press play.</h2>
-          <a
-            className="bo__btn"
-            href="https://open.spotify.com"
-            target="_blank"
-            rel="noreferrer"
-          >
-            ♫ More music
-          </a>
-        </div>
-
-        <div className="bo__tiles">
-          {items.map((track) => (
-            <button
-              className="bo__tile"
-              key={track.id}
-              data-playing={track.playing || undefined}
-              onClick={track.toggle}
-              aria-label={`${track.playing ? 'Pause' : 'Play'} ${track.title}`}
-            >
-              <span className="bo__tileTop">
-                <span className="bo__tileNum">{track.num}</span>
-                <span className="bo__tileBtn" aria-hidden="true">
-                  {track.playing ? <span className="bo__bars" /> : <PlayIcon />}
-                </span>
-              </span>
-              <span className="bo__tileMeta">
-                <span className="bo__tileTitle">{track.title}</span>
-                <span className="bo__tileArtist">{track.project}</span>
-              </span>
-            </button>
-          ))}
-        </div>
-      </section>
-
       <section className="bo__dance" id="ecstatic-dance">
         <div className="bo__danceText">
-          <span className="bo__danceKicker">05 · Ecstatic Dance DJ</span>
+          <span className="bo__danceKicker">03 · Ecstatic Dance</span>
           <h2 className="bo__h4">
             Dance
             <br />

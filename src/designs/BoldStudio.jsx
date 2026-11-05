@@ -1,7 +1,7 @@
 import { studio as t } from '../data/studio'
 import { Placeholder } from '../components/Placeholder'
 import { BoldContact, BoldSubpage, ServicePaths, SubHero } from './Bold'
-import './BoldMusicService.css'
+import './BoldMusic.css'
 import './BoldStudio.css'
 
 /** B subview: the studio in La Floresta, home to production for artists and mentorship. */
