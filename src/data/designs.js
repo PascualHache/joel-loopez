@@ -75,6 +75,21 @@ export const quotes = [
 
 export const about = {
   bold: "From my studio in La Floresta, surrounded by nature, I write for brands, games and artists. What matters most to me is the human connection — you're warmly invited to visit, no pressure, no commitment.",
+  /** How Joel works, in his own words: close, humanist and conscious; versatile and contemporary. */
+  values: [
+    {
+      title: 'Close',
+      body: 'We work side by side, in the studio or remotely. You are part of the process from the first idea.',
+    },
+    {
+      title: 'Human and conscious',
+      body: 'Calm sessions, deep listening and real care for the people behind every project.',
+    },
+    {
+      title: 'Versatile and contemporary',
+      body: 'Any genre, acoustic or electronic — for brands, games, film, artists and the dance floor.',
+    },
+  ],
 }
 
 export const studioImage = '/assets/home/img-joelloopez-new-section.jpg'

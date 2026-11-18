@@ -417,6 +417,34 @@
   color: var(--text-muted);
 }
 
+/* How Joel works: grey rules, no red, so the eyebrow stays the only accent. */
+.bo__values {
+  display: flex;
+  flex-direction: column;
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bo__value {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-block: var(--space-4);
+  border-top: 1px solid var(--border);
+}
+
+.bo__valueTitle {
+  font-size: var(--text-base);
+  font-weight: 600;
+}
+
+.bo__valueBody {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
 .bo__studio img {
   width: 100%;
   height: 100%;
@@ -451,6 +479,19 @@
   font-weight: 700;
   letter-spacing: -0.045em;
   line-height: 0.95;
+}
+
+.bo__contactLead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.bo__contactNote {
+  max-width: 34ch;
+  font-size: var(--text-lg);
+  line-height: 1.55;
+  opacity: 0.85;
 }
 
 .bo__contactDetails {

@@ -81,11 +81,16 @@ export function BoldContact() {
     <footer className="bo__contact" id="contact">
       <div className="bo__contactInner container">
         <div className="bo__contactGrid">
-          <h2 className="bo__h4">
-            Let’s make
-            <br />
-            something.
-          </h2>
+          <div className="bo__contactLead">
+            <h2 className="bo__h4">
+              Let’s make
+              <br />
+              something
+              <br />
+              together.
+            </h2>
+            <p className="bo__contactNote">Tell me about your idea. No pressure, no commitment.</p>
+          </div>
           <div className="bo__contactDetails">
             <a href={`mailto:${contact.email}`}>{contact.email}</a>
             <a href={contact.phoneHref}>{contact.phone}</a>
@@ -164,7 +169,7 @@ export function Bold() {
 
           <div className="bo__topText">
             <p className="bo__lede">
-              Original soundtracks in any genre you need. Composed in Barcelona.
+              Original music in any genre, from acoustic to electronic. Made with you, in Barcelona.
             </p>
             <div className="bo__clients">
               <span className="bo__clientsLabel">Music for</span>
@@ -234,6 +239,14 @@ export function Bold() {
             DJ. Barcelona.
           </h2>
           <p className="bo__studioBody">{about.bold}</p>
+          <ul className="bo__values">
+            {about.values.map((value) => (
+              <li className="bo__value" key={value.title}>
+                <span className="bo__valueTitle">{value.title}</span>
+                <span className="bo__valueBody">{value.body}</span>
+              </li>
+            ))}
+          </ul>
         </div>
         <img src={studioImage} alt="Joel Loopez in his studio" loading="lazy" />
       </section>
