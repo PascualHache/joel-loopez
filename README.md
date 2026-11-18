@@ -35,6 +35,17 @@ All colors, spacing, radii and type sizes live as custom properties in
 `--text-muted`, …) that components consume. Swap the imported scale — e.g.
 `red-dark.css` → `crimson-dark.css` — to re-brand without touching components.
 
+### Colour rhythm on long pages
+
+Red (`--brand-red`) opens and closes a page: the hero and the contact block.
+Black carries the content in between. When a page grows past those two red
+bands, every extra full-width band uses **linen** (`--linen`, with
+`--linen-ink` for headings and `--linen-muted` for body copy), never a third
+red band. On linen, keep red to a single touch — the kicker or the primary
+button (`.bo__btn`). On black sections, secondary labels (roles, captions) are
+grey (`--text-subtle`), not red. The home's *Dance freely* band is the
+reference.
+
 ## Content
 
 Copy and media live in [`src/data/site.js`](src/data/site.js). Hero and about

@@ -42,6 +42,17 @@
   --accent-text: #dc2f3a;
   --accent-contrast: #fff;
 
+  /*
+   * --- Linen: the third colour, a warm neutral ---
+   * Red opens and closes a page (hero, contact); black carries the content.
+   * Once a page grows past those two red bands, any further full-width band
+   * goes linen, not red, so the red stays an accent. On linen, red is kept to
+   * one touch: the kicker or the primary button.
+   */
+  --linen: #e7e2d7;
+  --linen-ink: var(--gray-1);
+  --linen-muted: #3d3934;
+
   /* --- Typography --- */
   --font-sans: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, Helvetica, Arial, sans-serif;
