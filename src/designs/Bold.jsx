@@ -199,12 +199,12 @@ export function Bold() {
             retreats and festivals.
           </p>
           <div>
-            <a className="bo__btnLight" href="#contact">
+            <a className="bo__btn" href="#contact">
               {ecstaticDance.cta}
             </a>
           </div>
         </div>
-        <Placeholder label={ecstaticDance.placeholder} tone="light" minHeight={460} />
+        <Placeholder label={ecstaticDance.placeholder} tone="linen" minHeight={460} />
       </section>
 
       <section className="bo__quotes container">

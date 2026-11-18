@@ -23,6 +23,14 @@
   color: #fff;
 }
 
+/* On linen bands: a warm photo-coloured block, dark dashes. */
+.ph[data-tone='linen'] {
+  border-radius: 0;
+  background: #937d70;
+  border: 1px dashed var(--black-a6);
+  color: #fff;
+}
+
 .ph__caption {
   max-width: 34em;
   font-size: var(--text-xs);
